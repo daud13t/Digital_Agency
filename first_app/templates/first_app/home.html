@@ -1,0 +1,140 @@
+{% extends 'first_app/base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    
+</head>
+
+<style>
+#loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    transition: opacity 1s ease;
+}
+
+#video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 90px;
+    left: 8%;
+    width: 84%;
+    height: 14px;
+    background: rgba(255,255,255,0.15);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: width 0.2s linear;
+}
+
+.percent {
+    position: absolute;
+    bottom: 30px;
+    right: 8%;
+    font-family: 'Press Start 2P';
+    font-size: 42px;
+    color: white;
+}
+body{
+    background-color: #0b0b0b;
+}
+/* x */
+
+
+
+.hero {
+
+    min-height: 90vh;
+    color: white;
+    padding: 120px 25%;
+
+}
+
+.Hero-heading{
+    display: flex;
+    font-family: "Audiowide", sans-serif;
+    font-size: 6rem;
+    color: rgb(240, 233, 255);
+    justify-content: center;
+    
+}
+
+</style>
+<div id="loader">
+    <video id="video" src="{% static 'videos/12656_Big_Bang_1080.webm' %}" autoplay muted loop playsinline></video>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <div class="percent" id="percent">0%</div>
+</div>
+
+
+
+
+<section class="hero">
+
+    <h1 class="Hero-heading">Bellatrix studio</h1>
+
+</section>
+
+
+
+
+
+
+<script>
+window.addEventListener('load', () => {
+    const assets = document.images;
+    const total = assets.length;
+    let loaded = 0;
+
+    const fill = document.getElementById('progress-fill');
+    const text = document.getElementById('percent');
+    const loader = document.getElementById('loader');
+
+    function update() {
+        loaded++;
+        const percent = total
+            ? Math.round((loaded / total) * 100)
+            : 100;
+
+        fill.style.width = percent + '%';
+        text.innerText = percent + '%';
+
+        if (percent >= 100) {
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 1000);
+            }, 500);
+        }
+    }
+
+    if (total === 0) {
+        update(); // fallback when no images
+        return;
+    }
+
+    for (let img of assets) {
+        if (img.complete) update();
+        else img.addEventListener('load', update);
+    }
+});
+</script>
+
+{% endblock content %}

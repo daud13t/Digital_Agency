@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Agency</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=BBH+Bartle&display=swap" rel="stylesheet">
+
+
+<style>
+
+.nav-wrap {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.nav-pill {
+    width: 95%;
+    max-width: 1200px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-left {
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-center {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-center a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    transition: opacity 0.3s ease;
+}
+
+.nav-center a:hover {
+    opacity: 1;
+    color: white;
+}
+
+.nav-toggle{display:none;}
+    .nav-right{display:flex; align-items:center; gap:8px}
+    .nav-toggle-input{display:none}
+
+    .nav-toggle-input:checked ~ .nav-center {
+        display: flex;
+    }
+    .nav-toggle-input:checked ~ .nav-center a {
+        display: block;
+        padding: 10px 12px;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+@media (max-width: 565px) {
+    .nav-toggle {
+        display: inline-flex;
+        transition: transform 180ms ease, background 180ms ease;
+    }
+    .nav-toggle-input:checked ~ .nav-right .nav-toggle {
+        transform: rotate(90deg);
+        background: rgba(255,255,255,0.06);
+    }
+    .nav-center {
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        width: 90%;
+        max-width: 360px;
+        background: rgba(0,0,0,0.95);
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.06);
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 0; 
+        pointer-events: none;
+        transition: max-height 260ms ease, opacity 220ms ease, transform 220ms ease, padding 220ms ease;
+        transform-origin: top center;
+        z-index: 999;
+    }
+    .nav-toggle-input:checked ~ .nav-center {
+        max-height: 400px;
+        opacity: 1;
+        padding: 12px 14px; 
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+    }
+    .nav-center a {
+        transform: translateY(-6px);
+        opacity: 0;
+        transition: transform 220ms ease, opacity 200ms ease;
+    }
+    .nav-toggle-input:checked ~ .nav-center a {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@media (max-width: 480px) {
+    .nav-left {
+        font-size: 0.9rem;
+    }
+}
+</style>
+
+  <div class="nav-wrap">
+    <nav class="nav-pill">
+        <div class="nav-left">BELLATRIX</div>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true">
+
+        <ul class="nav-center">
+            <li><a href="#">Work</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+            <div class="nav-right">
+            <label for="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" title="Menu">&#9776;</label>
+            </div>
+        </nav>
+    </div>
+
+</head>
+<body>
+
+{% block content %}
+
+{% endblock content %}
+
+</body>
+</html>
