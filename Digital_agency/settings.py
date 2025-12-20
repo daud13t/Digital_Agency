@@ -21,8 +21,21 @@ TEMPLATE_DIR = BASE_DIR/'templates'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-fallback-key')
+
+
+#
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','*.onrender.com',]
 
@@ -74,7 +87,9 @@ WSGI_APPLICATION = 'Digital_agency.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 import dj_database_url
 DATABASES = {
-    'default':dj_database_url.config(default=f"sqlite:///{os.path.join(BASE_DIR,"db.sqlite3")}")
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    )
 }
 
 
@@ -114,6 +129,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
