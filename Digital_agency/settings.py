@@ -37,7 +37,7 @@ CSRF_COOKIE_SECURE = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','*.onrender.com',]
+ALLOWED_HOSTS = ['127.0.0.1','localhost','Bellatrix.onrender.com',]
 
 
 # Application definition
