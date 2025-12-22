@@ -11,144 +11,55 @@
     <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=BBH+Bartle&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
 
 
 <style>
 
 .nav-wrap {
-    position: absolute;
+    position: sticky;
     top: 32px;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     z-index: 1000;
 }
 
 .nav-pill {
-    width: 95%;
+    width: 97%;
     max-width: 1200px;
     padding: 14px 24px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: rgba(27, 27, 27, 0.07);
+    justify-content: center;
+    background: rgba(35, 35, 35, 0.07);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border-radius: 999px;
-    border: 1px solid rgba(51, 51, 51, 0.26);
+    border: 1px solid rgba(14, 14, 14, 0.632);
 }
 
-.nav-left {
-    color: rgb(255, 255, 255);
-    font-weight: 600;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-}
 
 .nav-center {
-    list-style: none;
-    display: flex;
-    gap: 28px;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-center a {
+    margin: 0px;
+    font-weight: 550;
+    font-size: 2.5rem;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.888);
-    font-size: 0.95rem;
-    transition: opacity 0.3s ease;
 }
 
-.nav-center a:hover {
-    opacity: 1;
-    color: rgb(51, 50, 50);
+.nav-a{
+    text-decoration: none;
 }
 
-.nav-toggle{display:none;}
-    .nav-right{display:flex; align-items:center; gap:8px}
-    .nav-toggle-input{display:none}
-
-    .nav-toggle-input:checked ~ .nav-center {
-        display: flex;
-    }
-    .nav-toggle-input:checked ~ .nav-center a {
-        display: block;
-        padding: 10px 12px;
-        text-align: center;
-        font-size: 0.95rem;
-    }
-@media (max-width: 565px) {
-    .nav-toggle {
-        display: inline-flex;
-        transition: transform 180ms ease, background 180ms ease;
-    }
-    .nav-toggle-input:checked ~ .nav-right .nav-toggle {
-        transform: rotate(90deg);
-        background: rgba(255,255,255,0.06);
-    }
-    .nav-center {
-        position: absolute;
-        top: calc(100% + 12px);
-        left: 50%;
-        transform: translateX(-50%) translateY(-6px);
-        width: 90%;
-        max-width: 360px;
-        background: rgba(0,0,0,0.95);
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.06);
-        overflow: hidden;
-        max-height: 0;
-        opacity: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding: 0; 
-        pointer-events: none;
-        transition: max-height 260ms ease, opacity 220ms ease, transform 220ms ease, padding 220ms ease;
-        transform-origin: top center;
-        z-index: 999;
-    }
-    .nav-toggle-input:checked ~ .nav-center {
-        max-height: 400px;
-        opacity: 1;
-        padding: 12px 14px; 
-        pointer-events: auto;
-        transform: translateX(-50%) translateY(0);
-    }
-    .nav-center a {
-        transform: translateY(-6px);
-        opacity: 0;
-        transition: transform 220ms ease, opacity 200ms ease;
-    }
-    .nav-toggle-input:checked ~ .nav-center a {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-@media (max-width: 480px) {
-    .nav-left {
-        font-size: 0.9rem;
-    }
-}
 </style>
 
   <div class="nav-wrap">
     <nav class="nav-pill">
-        <div class="nav-left">BELLATRIX</div>
 
-        <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true">
-
-        <ul class="nav-center">
-            <li><a href="#">Work</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-
-            <div class="nav-right">
-            <label for="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" title="Menu">&#9776;</label>
-            </div>
+        <a class="nav-a" href="#"><h1 class="nav-center">BELLATRIX</h1></a>
+        
         </nav>
     </div>
 
