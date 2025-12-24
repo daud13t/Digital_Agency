@@ -50,41 +50,7 @@
     color: white;
 }
 
-body{
-    background-color: #0b0b0b;
-}
 
-
-/* sections */
-
-
-
-.hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-    padding: 100px 20px;
-    background-color: #0b0b0b;
-}
-
-
-.hero-content h1{
-    color: white;
-    font-family: 'BBH Bartle',sans-serif;
-    font-size: 3rem;
-    padding-top: 30px;
-    margin-bottom: 50px;
-}
-
-.hero-content p{
-    font-family:'Alumni Sans Pinstripe',sans-serif;
-    font-size: 2.3rem;
-    line-height: 1.6;
-    color: rgb(215, 215, 215);
-    margin-bottom: 120px;
-}
 .scroll-indicator {
     font-size: 2rem;
     letter-spacing: 6px;    
@@ -93,11 +59,6 @@ body{
     cursor: pointer; 
     text-decoration: none;
 }
-
-
-
-
-
 .hero-stars {
     position: absolute;
     bottom: 0;
@@ -126,6 +87,124 @@ body{
     from { opacity: 0.2; transform: scale(0.5);}
     to { opacity: 1; transform: scale(1);}
 }
+
+
+.hover-arrow {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+
+}
+
+.hover-arrow .arrow {
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: translateY(6px) rotate(1deg); 
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    color: #aaa;
+}
+
+.hover-arrow:hover .arrow {
+    opacity: 1;
+    transform: translateY(0) rotate(1deg);
+}
+
+
+
+body{
+    background-color: #0b0b0b;
+}
+
+
+/* sections */
+
+
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 95vh;
+    padding: 100px 20px;
+    background-color: #0b0b0b;
+}
+
+
+.hero-content h1{
+    color: white;
+    font-family: 'BBH Bartle',sans-serif;
+    font-size: 3rem;
+    padding-top: 30px;
+    margin-bottom: 50px;
+}
+
+.hero-content p{
+    font-family:'Alumni Sans Pinstripe',sans-serif;
+    font-size: 2.3rem;
+    line-height: 1.6;
+    color: rgb(215, 215, 215);
+    margin-bottom: 120px;
+}
+
+.work{
+    display:flex;
+    min-height: 93vh;
+    background-color: rgb(19, 19, 19);
+}
+.work-heading{
+    max-height:200px ;
+}
+.work-heading h1{
+    text-decoration: none;
+    font-family: 'Funnel Sans';
+    font-size: 4rem;
+    color: white;
+    margin-bottom:60px;
+    padding: 68px 40px;
+    
+
+}
+
+.work-heading a{
+    text-decoration: none;
+}
+
+.work-slider{
+    padding-top: 15%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider-track{
+    display: flex;
+    min-width: 100%;
+    gap: 20px;
+    padding-top: 20px;
+    transition: transform 0.6s ease;
+}
+
+.slide{
+    display: flex;
+    min-width: 100%;
+    gap: 20px;
+
+}
+
+.slide.single{
+    justify-content: center;
+}
+
+.slide img{
+    flex: 1;
+    height: 420px;
+    border-radius: 50px;
+    object-fit: cover;
+    background: rgb(19, 19,19);
+}
+
 </style>
 <div id="loader">
     <video id="video" src="{% static 'videos/12656_Big_Bang_1080.webm' %}" autoplay muted loop playsinline></video>
@@ -162,11 +241,51 @@ body{
 
     </div>
 </section>
+<section id="work" class="work">
+
+    <div class="work-heading">
+        <h1 id="h1-work" class="hover-arrow">Work<span class="arrow">↗</span></h1>
+    </div>
+
+    <div class="work-slider">
+
+        <div class="slider-track">
+
+            <div class="slide">
+                <img src="{% static 'img/Games.png' %}" alt="">
+                <img src="{% static 'img/Games.png' %}" alt="">
+            </div>
+
+            <div class="slide">
+                <img src="{% static 'img/Games.png' %}" alt="">
+                <img src="{% static 'img/Games.png' %}" alt="">
+            </div>
+
+            <div class="slide">
+                <img src="{% static 'img/Games.png' %}" alt="">
+                <img src="{% static 'img/Games.png' %}" alt="">
+            </div>
+
+        </div>
+        
+    </div>
+
+
+</section>
 
 
 
+<script>
+const track = document.querySelector('.slider-track');
+const slides = document.querySelectorAll('.slide');
 
+let index = 0;
 
+setInterval(() => {
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+}, 4000);
+</script>
 
 <script>
 window.addEventListener('load', () => {
