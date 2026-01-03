@@ -1,12 +1,9 @@
 {% extends 'first_app/base.html' %}
 {% load static %}
 {% block content %}
-
-
-    <head>
-
+<head>
+<title>Home - Bellatrix</title>
 </head>
-
 <style>
 #loader {
     position: fixed;
@@ -37,7 +34,7 @@
 
 .progress-fill {
     height: 100%;
-    width: 0%;
+
     background: white;
     transition: width 0.2s linear;
 }
@@ -159,7 +156,7 @@ body{
     justify-content: center;
     color: rgba(83, 83, 83, 0.6);
     padding-top: 40px;
-    verflow: hidden;
+    overflow: hidden;
 
 
 }
@@ -193,7 +190,7 @@ body{
 
 .hero-content h1{
     color: white;
-    font-family: 'BBH Bartle',sans-serif;
+    font-family: 'Tektur',sans-serif;
     font-size: 3rem;
     padding-top: 30px;
     margin-bottom: 50px;
@@ -286,9 +283,6 @@ body{
 }
 
 
-.widget.left {
-  grid-row: span ;
-}
 
 .column.right {
   display: flex;
@@ -337,9 +331,7 @@ body{
     grid-template-columns: 1fr;
       max-width: 80%;
   }
-  .widget.left {
-    grid-row: auto;
-  }
+
   .column.right {
     flex-direction: column;
   }
