@@ -1,0 +1,90 @@
+{% extends 'first_app/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+<title>Contact - Bellatrix</title>
+</head>
+<style>
+body{
+    background-color: #0c0c0c ;
+}
+.contact{
+
+    background-color: #0c0c0c;
+    padding: 50px;
+
+}
+.contact-content{
+    color: #e6daf8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:23px;
+}
+.contact-content h1{
+    font-family : 'Inter', Sans-serrif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form{
+    width: 100%;
+    max-width: 430px;
+    background-color: rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 32px;
+}
+.form p{
+    display:flex;
+    flex-direction: column;
+    font-family:monospace ,sans-serif;
+    gap:6px;
+    margin-bottom: 28px;
+    font-size: 1.2rem;
+}
+
+
+.form input,
+.form textarea{
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 13px;
+    padding:14px 18px;
+    color:white;
+    font-size:14px;
+}
+.form textarea{
+    resize:none;
+    height: 100px;
+}
+
+.btn{
+    margin-top:3px;
+    background: #c8b7e1;
+    color:black;
+    border: none;
+    padding:12px 25px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+</style>
+
+
+
+    <section class="contact">
+        <div class="contact-content">
+        <h1>Start the Transmission.</h1>
+            <form class="form">
+                {{form.as_p}}
+                <button type="submit" class="btn">Send</button>
+            </form>
+        </div>
+
+    </section>
+
+
+{% endblock content %}

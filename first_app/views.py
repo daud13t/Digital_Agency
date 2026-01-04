@@ -25,9 +25,9 @@ def contact_view(request):
                 'to':['daud13t@gmail.com'],
                 'subject': f'new contact from {name}',
                 'html':f"""
-                    <p><strong>Name:</strong>{name}</p>
-                    <p><strong>email:</strong>{email}</p>
-                    <p><strong>Message:</strong>{message}</p>
+                    <p><strong>Name</strong>{name}</p>
+                    <p><strong>Email</strong>{email}</p>
+                    <p><strong>Message</strong>{message}</p>
                 """
             })
 
