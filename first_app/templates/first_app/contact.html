@@ -2,89 +2,139 @@
 {% load static %}
 {% block content %}
 <head>
-<title>Contact - Bellatrix</title>
+    <title>Contact - Bellatrix</title>
 </head>
+
 <style>
 body{
-    background-color: #0c0c0c ;
-}
-.contact{
-
     background-color: #0c0c0c;
-    padding: 50px;
-
+    margin: 0;
+    font-family: 'Inter', sans-serif;
 }
-.contact-content{
-    color: #e6daf8;
+
+.contact{
+    background-color: #0c0c0c;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.contact-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 960px;
+}
+
+.form-wrapper{
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:23px;
+    justify-content: center;
 }
-.contact-content h1{
-    font-family : 'Inter', Sans-serrif;
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin-bottom: 8px;
+
+.form-wrapper h1{
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-align: center;
 }
 
 .form{
     width: 100%;
     max-width: 430px;
     background-color: rgba(255,255,255,0.03);
-    border:1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 16px;
     padding: 32px;
 }
+
 .form p{
-    display:flex;
+    display: flex;
     flex-direction: column;
-    font-family:monospace ,sans-serif;
-    gap:6px;
+    font-family: monospace, sans-serif;
+    gap: 6px;
     margin-bottom: 28px;
     font-size: 1.2rem;
 }
-
 
 .form input,
 .form textarea{
     background: #111;
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 13px;
-    padding:14px 18px;
-    color:white;
-    font-size:14px;
+    padding: 14px 18px;
+    color: white;
+    font-size: 14px;
 }
+
 .form textarea{
-    resize:none;
-    height: 100px;
+    resize: none;
+    height: 99px;
 }
 
 .btn{
-    margin-top:3px;
+    margin-top: 3px;
     background: #c8b7e1;
-    color:black;
+    color: black;
     border: none;
-    padding:12px 25px;
+    padding: 12px 25px;
     border-radius: 999px;
     font-weight: 600;
     cursor: pointer;
 }
 
+.poetic{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.poetic h4{
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: #f0e9ff;
+    font-weight: 500;
+    text-align: right;
+    line-height: 1.5;
+    transform: translate(-20px, -20px);
+}
+
+/* Responsive: hide right-side paragraph on small screens */
+@media (max-width: 768px){
+    .poetic{
+        display: none;
+    }
+}
 </style>
 
-
-
-    <section class="contact">
-        <div class="contact-content">
-        <h1>Start the Transmission.</h1>
-            <form class="form">
-                {{form.as_p}}
-                <button type="submit" class="btn">Send</button>
+<section class="contact">
+    <div class="contact-flex">
+        <div class="form-wrapper">
+            <h1>Start the Transmission</h1>
+            <form class="form" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn">Send Signal</button>
+                    {% if sent %}
+        <p style="color: #00ff7f; font-weight: 600; margin-top: 12px;">
+            Signal sent successfully!
+        </p>
+                    {% endif %}
             </form>
         </div>
-
-    </section>
+        <div class="poetic">
+            <h4>We navigate the celestial streams, decoding whispers from the cosmos to connect stars with minds.</h4>
+        </div>
+    </div>
+</section>
 
 
 {% endblock content %}
