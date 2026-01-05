@@ -1,132 +1,195 @@
 {% extends 'first_app/base.html' %}
 {% load static %}
-{% block content%}
-    <head>
-    <title>Studio - Bellatrix</title>
-    </head>
-
+{% block content %}
+<title>Studio - Bellatrix
+</title>
 <style>
-    body{
-        background-color: black;
-        margin:0;
-        font-family:'Inter',sans-serif;
-        color:rgba(222,213,239,0.85);
-    }
+body{
+    background:black;
+    color: rgba(251, 247, 255, 0.85);
+    font-family:'Inter',sans-serif;
+    margin:0;
+}
 
-    .studio-hero{
-    position: relative;
-    min-height: 100vh;
+.studio-hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
     margin-top: -100px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    padding-left: 80px;
+    align-items:flex-end;
+    padding:80px;
+    overflow:hidden;
 }
 
-.bg-video{
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.15;
-    pointer-events: none;
+.studio-video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+    pointer-events:none;
 }
 
-.studio-content{
-    position: relative;
-    z-index: 1;
+.studio-hero-text{
+    position:relative;
+    z-index:1;
 }
 
-.studio-content h1{
-    font-size: 4rem;
-    font-family: 'Tektur', sans-serif;
+.studio-hero-text h1{
+    font-size:5rem;
+    font-weight:700;
+    letter-spacing:.04em;
 }
 
-.studio-content p{
-    font-size: 1.4rem;
-    opacity: 0.7;
+.studio-hero-text p{
+    font-size:1.6rem;
+    opacity:.7;
+}
+
+.studio-manifesto{
+    padding:160px 80px;
+}
+
+.studio-manifesto.light{
+    background: #a6a6a6;
+    color:#0b0b0b;
+}
+
+.studio-manifesto.dark{
+    background:#0b0b0b;
+    color: #c1c1c1;
+}
+
+.studio-manifesto h2{
+    font-size:3.2rem;
+    font-weight:700;
+    margin-bottom:24px;
+}
+
+.studio-manifesto p{
+    font-family:'Alumni Sans Pinstripe',sans-serif;
+    font-size:2.2rem;
+    line-height:1.5;
 }
 
 .studio-process{
-    padding: 160px 80px;
-    display: grid;
-    gap: 120px;
+    padding:160px 80px;
+    background:black;
 }
 
-.step h2{
-    font-size: 2.5rem;
-    font-family: 'Tektur', sans-serif;
+.process-row{
+    display:grid;
+    grid-template-columns:60px 220px 1fr;
+    align-items:center;
+    gap:40px;
+    margin-bottom:80px;
 }
 
-.step p{
-    font-size: 1.3rem;
-    max-width: 520px;
-    opacity: 0.7;
+.process-row span{
+    font-size:1.8rem;
+    opacity:.4;
 }
 
-.studio-principles{
-    padding: 140px 80px;
-    font-size: 2rem;
-    line-height: 1.8;
-    opacity: 0.8;
+.process-row h3{
+    font-size:2.2rem;
+    font-weight:600;
 }
 
-.studio-signal{
-    padding: 160px 80px;
-    font-size: 1.6rem;
-    opacity: 0.5;
+.process-row p{
+    font-family:'Alumni Sans Pinstripe',sans-serif;
+    font-weight: 700;
+    font-size:1.8rem;
+    opacity:.7;
 }
+
+
+.studio-work-with-us{
+    padding:140px 80px;
+    text-align:center;
+    background-color: #242427;
+    font-size:1.9rem;
+    font-weight:700;
+}
+
+.studio-cta{
+    display:inline-block;
+    margin-top:24px;
+    padding:14px 40px;
+    background:white;
+    color:black;
+    font-size:1.3rem;
+    font-weight:700;
+    border-radius:999px;
+    text-decoration:none;
+}
+
+
 
 </style>
+<section class="studio-hero">
+<video muted autoplay loop class="studio-video">
+    <source src="{% static 'first_app/videos/stars.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
-    <section class="studio-hero">
-    <video autoplay muted loop playsinline class="bg-video">
-        <source src="{% static 'first_app/videos/studio-stars.mp4' %}" type="video/mp4">
-    </video>
-    <div class="studio-content">
-        <h1>Studio</h1>
-        <p>Where signals form before becoming constellations.</p>
+    <div class="studio-hero-text">
+        <h1>STUDIO</h1>
+        <p>Where gravity bends ideas into form.</p>
     </div>
+</section>
+
+<section class="studio-manifesto light">
+    <h2>WE DO NOT DECORATE.</h2>
+    <p>We observe.
+    We calculate.
+    We align.</p>
+</section>
+
+<section class="studio-manifesto dark">
+    <h2>EVERY SIGNAL HAS A SOURCE.</h2>
+    <p>Before light, there is pressure.
+    Before motion, there is mass.</p>
 </section>
 
 <section class="studio-process">
-    <div class="step">
-        <h2>Observation</h2>
-        <p>We listen before we speak. Signals hide in silence.</p>
+    <div class="process-row">
+        <span>01</span>
+        <h3>OBSERVATION</h3>
+        <p>We study the system as it exists, its constraints, behavior, and intent.</p>
     </div>
 
-    <div class="step">
-        <h2>Gravity</h2>
-        <p>Ideas attract mass. What matters pulls everything else in.</p>
+    <div class="process-row">
+        <span>02</span>
+        <h3>FOCUS</h3>
+        <p>We isolate what matters most and remove everything that distracts from it.</p>
     </div>
 
-    <div class="step">
-        <h2>Ignition</h2>
-        <p>Pressure becomes light. The concept begins to burn.</p>
+    <div class="process-row">
+        <span>03</span>
+        <h3>STRUCTURE</h3>
+        <p>We give the idea form so it can support growth, scale, and motion.</p>
     </div>
 
-    <div class="step">
-        <h2>Orbit</h2>
-        <p>Systems stabilize. Design finds its rhythm.</p>
+    <div class="process-row">
+        <span>04</span>
+        <h3>MOTION</h3>
+        <p>Design becomes interactive. Systems respond. The work comes alive.</p>
     </div>
 
-    <div class="step">
-        <h2>Transmission</h2>
-        <p>The signal is released. Clean. Intentional. Alive.</p>
+    <div class="process-row">
+        <span>05</span>
+        <h3>DEPLOYMENT</h3>
+        <p>The system is released into its environment, stable and ready to perform.</p>
     </div>
 </section>
 
-<section class="studio-principles">
-    <p>Minimal form.</p>
-    <p>Maximum intent.</p>
-    <p>No noise.</p>
-    <p>No imitation.</p>
+
+    <section class="studio-work-with-us">
+    <p>LET’S CREATE SOMETHING THAT RESONATES.</p>
+    <a href="{% url 'contact' %}" class="studio-cta">CONTACT US</a>
 </section>
 
-<section class="studio-signal">
-    <p>Every star was once unseen.</p>
-</section>
 
 
 {% endblock content %}

@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <head>
-<title>Home - Bellatrix</title>
+<title>Bellatrix</title>
 </head>
 <style>
 #loader {
@@ -46,23 +46,6 @@
     font-family: 'Press Start 2P',sans-serif;
     font-size: 42px;
     color: white;
-}
-
-
-
-::-webkit-scrollbar {
-  width: 3px;
-    height: 5px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #757575;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #888;
 }
 
 
@@ -285,19 +268,19 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
 }
 
 .widget h3 {
   margin: 0 0 10px 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .widget p {
   margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: 1.2rem;
+  line-height: 1.2;
   color: #ccc;
 }
 
@@ -399,7 +382,7 @@ body{
     justify-content: space-between;
     align-items: flex-start;
     padding: 30px;
-    background-color: #191b1c;
+    background-color: #2b2b2b;
     flex-wrap: wrap;
     position: relative;
 }
@@ -439,7 +422,7 @@ body{
 </div>
 
 <section class="hero">
-        <video autoplay muted loop class="hero-video"><source src="{% static 'first_app/videos/hero-home.mp4' %}"type="video/mp4"></video>
+        <video autoplay muted loop class="hero-video" ><source src="{% static 'first_app/videos/hero-home.mp4' %}" type="video/mp4"></video>
     <div class="hero-content">
 
 
