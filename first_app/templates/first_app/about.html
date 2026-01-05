@@ -1,0 +1,102 @@
+{% extends 'first_app/base.html' %}
+{% block content %}
+<head>
+    <title>About - Bellatrix</title>
+</head>
+
+<style>
+body{
+    background-color:#0c0c0c;
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color: rgba(245, 239, 255, 0.85);
+}
+
+.about{
+    min-height:100vh;
+    display:flex;
+    padding:60px 24px;
+}
+
+.about-inner{
+    max-width:1250px;
+    width:100%;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.about-inner h1{
+    font-size:4.9rem;
+    font-weight: 600;
+    color:#ffffff;
+    letter-spacing:1px;
+}
+
+.about-inner h3{
+    font-family:'Alumni Sans Pinstripe',sans-serif;
+    font-size:3.2rem;
+    font-weight:650;
+    color: #ece5f4;
+}
+
+.about-inner p{
+    font-size:1.15rem;
+    max-width:620px;
+    line-height:2.5;
+
+}
+.marg-3{
+    margin-top:80px;
+}
+.signature{
+    margin-top:40px;
+    font-family: 'Inter',sans-serif;
+    font-size:3.9rem;
+    color: #f8f5ff;
+    line-height: 1.5;
+}
+
+@media(max-width:768px){
+    .about{
+        padding:60px 20px;
+    }
+    .about-inner h1{
+        font-size:2.8rem;
+    }
+    .about-inner h3{
+        font-size:2rem;
+    }
+    .signature{
+        font-size:1.6rem;
+    }
+}
+</style>
+
+<section class="about">
+    <div class="about-inner">
+        <h1>About.</h1>
+
+        <h3>We move quietly through the digital cosmos</h3>
+
+        <p>
+            Bellatrix exists at the intersection of precision and imagination.
+            We design and build digital systems with the patience of astronomy,
+            observing patterns, refining trajectories, and aligning ideas
+            until they move effortlessly through space.
+        </p>
+
+        <p class="marg-3">
+            We believe clarity is power. Every interface, every interaction,
+            every line of code is shaped to feel inevitable, as if it was
+            always meant to exist that way.
+        </p>
+
+        <div class="signature">
+            WE NAVIGATE <br> THE DIGITAL COSMOS
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

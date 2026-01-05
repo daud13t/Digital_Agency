@@ -42,7 +42,8 @@ body{
     font-size: 3rem;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 12px;
+    margin-top:18px;
+    margin-bottom: 22px;
     text-align: center;
 }
 
@@ -90,51 +91,37 @@ body{
     cursor: pointer;
 }
 
-.poetic{
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
 
-.poetic h4{
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.6rem;
-    color: #f0e9ff;
-    font-weight: 500;
-    text-align: right;
-    line-height: 1.5;
-    transform: translate(-20px, -20px);
-}
-
-/* Responsive: hide right-side paragraph on small screens */
-@media (max-width: 768px){
-    .poetic{
-        display: none;
-    }
-}
 </style>
 
 <section class="contact">
     <div class="contact-flex">
         <div class="form-wrapper">
-            <h1>Start the Transmission</h1>
+            <h1>Start the Transmission.</h1>
+
             <form class="form" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn">Send Signal</button>
-                    {% if sent %}
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Send Signal</button>
+
+    {% if sent %}
         <p style="color: #00ff7f; font-weight: 600; margin-top: 12px;">
             Signal sent successfully!
         </p>
-                    {% endif %}
-            </form>
-        </div>
-        <div class="poetic">
-            <h4>We navigate the celestial streams, decoding whispers from the cosmos to connect stars with minds.</h4>
+    {% endif %}
+
+            {% if error %}
+<p style="color: #ff4d4d; font-weight: 600; margin-top: 12px;">
+    Oops! Signal failed to send.
+</p>
+{% endif %}
+
+</form>
+
         </div>
     </div>
 </section>
+
 
 
 {% endblock content %}

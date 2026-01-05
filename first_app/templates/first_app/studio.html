@@ -1,0 +1,132 @@
+{% extends 'first_app/base.html' %}
+{% load static %}
+{% block content%}
+    <head>
+    <title>Studio - Bellatrix</title>
+    </head>
+
+<style>
+    body{
+        background-color: black;
+        margin:0;
+        font-family:'Inter',sans-serif;
+        color:rgba(222,213,239,0.85);
+    }
+
+    .studio-hero{
+    position: relative;
+    min-height: 100vh;
+    margin-top: -100px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
+}
+
+.bg-video{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.studio-content{
+    position: relative;
+    z-index: 1;
+}
+
+.studio-content h1{
+    font-size: 4rem;
+    font-family: 'Tektur', sans-serif;
+}
+
+.studio-content p{
+    font-size: 1.4rem;
+    opacity: 0.7;
+}
+
+.studio-process{
+    padding: 160px 80px;
+    display: grid;
+    gap: 120px;
+}
+
+.step h2{
+    font-size: 2.5rem;
+    font-family: 'Tektur', sans-serif;
+}
+
+.step p{
+    font-size: 1.3rem;
+    max-width: 520px;
+    opacity: 0.7;
+}
+
+.studio-principles{
+    padding: 140px 80px;
+    font-size: 2rem;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+.studio-signal{
+    padding: 160px 80px;
+    font-size: 1.6rem;
+    opacity: 0.5;
+}
+
+</style>
+
+    <section class="studio-hero">
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="{% static 'first_app/videos/studio-stars.mp4' %}" type="video/mp4">
+    </video>
+    <div class="studio-content">
+        <h1>Studio</h1>
+        <p>Where signals form before becoming constellations.</p>
+    </div>
+</section>
+
+<section class="studio-process">
+    <div class="step">
+        <h2>Observation</h2>
+        <p>We listen before we speak. Signals hide in silence.</p>
+    </div>
+
+    <div class="step">
+        <h2>Gravity</h2>
+        <p>Ideas attract mass. What matters pulls everything else in.</p>
+    </div>
+
+    <div class="step">
+        <h2>Ignition</h2>
+        <p>Pressure becomes light. The concept begins to burn.</p>
+    </div>
+
+    <div class="step">
+        <h2>Orbit</h2>
+        <p>Systems stabilize. Design finds its rhythm.</p>
+    </div>
+
+    <div class="step">
+        <h2>Transmission</h2>
+        <p>The signal is released. Clean. Intentional. Alive.</p>
+    </div>
+</section>
+
+<section class="studio-principles">
+    <p>Minimal form.</p>
+    <p>Maximum intent.</p>
+    <p>No noise.</p>
+    <p>No imitation.</p>
+</section>
+
+<section class="studio-signal">
+    <p>Every star was once unseen.</p>
+</section>
+
+
+{% endblock content %}

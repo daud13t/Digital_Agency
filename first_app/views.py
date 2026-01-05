@@ -9,22 +9,24 @@ from django.conf import settings
 
 # Create your views here.
 resend.api_key = settings.RESEND_API_KEY
+logger = logging.getLogger(__name__)
+
+
 
 class Home(generic.TemplateView):
     template_name = 'first_app/home.html'
-from django.shortcuts import render
-from . import forms
-import resend
-from django.conf import settings
-import logging
 
-resend.api_key = settings.RESEND_API_KEY
-logger = logging.getLogger(__name__)
+class About(generic.TemplateView):
+    template_name = 'first_app/about.html'
+
+class Studio(generic.TemplateView):
+    template_name = 'first_app/studio.html'
+
 
 def contact_view(request):
     sent = False
-    error = False
     form = forms.ContactForm()
+    error = False
 
     if request.method == 'POST':
         form = forms.ContactForm(request.POST)
@@ -34,7 +36,7 @@ def contact_view(request):
             message = form.cleaned_data['message']
             try:
                 resend.Emails.send({
-                    'from': 'Contact Form <onboarding@resend.dev>',
+                    'from': 'Contact Form <onboarding@yourdomain.com>',
                     'to': ['daud13t@gmail.com'],
                     'subject': f'New contact from {name}',
                     'html': f"""
@@ -49,4 +51,8 @@ def contact_view(request):
                 logger.error(f"Resend email failed: {e}")
                 error = True
 
-    return render(request, "first_app/contact.html", {"form": form, "sent": sent, "error": error})
+    return render(request, "first_app/contact.html", {
+        "form": form,
+        "sent": sent,
+        'error':error
+    })

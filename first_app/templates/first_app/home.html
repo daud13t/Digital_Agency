@@ -49,15 +49,6 @@
 }
 
 
-.scroll-indicator {
-    font-size: 2rem;
-    letter-spacing: 6px;
-    color: #888;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-}
-
 
 ::-webkit-scrollbar {
   width: 3px;
@@ -73,34 +64,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
-.hero-stars {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 300px;
-    height: 300px;
-    pointer-events: none;
-    overflow: visible;
-    z-index: 0;
-}
-.hero-stars .star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #ffffff;
-    border-radius: 50%;
-    box-shadow: 0 0 6px rgba(255,255,255,0.5);
-    animation: twinkle 2s infinite alternate;
-}
-.hero-stars .star:nth-child(1) { animation-duration: 1.5s; }
-.hero-stars .star:nth-child(2) { animation-duration: 2s; }
-.hero-stars .star:nth-child(3) { animation-duration: 2.5s; }
-.hero-stars .star:nth-child(4) { animation-duration: 1.8s; }
-.hero-stars .star:nth-child(5) { animation-duration: 2.2s; }
-@keyframes twinkle {
-    from { opacity: 0.2; transform: scale(0.5);}
-    to { opacity: 1; transform: scale(1);}
-}
+
 
 
 .hover-arrow {
@@ -132,17 +96,17 @@ body{
     background-color: #0b0b0b;
 }
 
-
 /* ##########sections########### */
 .sec-heading{
     text-align: center;
 }
 .sec-heading h1{
     text-decoration: none;
-    font-family: 'Funnel Sans' ,sans-serif;
+    font-family: "Inter", sans-serif;
     color: white;
+    font-weight: 450;
     font-size: 4rem;
-    padding: 120px 20px 0 20px;
+    padding: 90px 20px 0 20px;
     white-space: nowrap;
     margin-bottom:65px;
 }
@@ -182,16 +146,37 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 95vh;
-    padding: 100px 20px;
+    overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+    padding: 10px 10px;
+    margin-top: -100px;
     background-color: #0b0b0b;
 }
 
+.hero-video{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.55;
+    pointer-events: none;
+}
+.hero-content {
+    z-index: 1;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
 
 .hero-content h1{
     color: white;
-    font-family: 'Tektur',sans-serif;
-    font-size: 3rem;
+    font-family: 'Orbitron',sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
     padding-top: 30px;
     margin-bottom: 50px;
 }
@@ -282,15 +267,11 @@ body{
   margin: auto;
 }
 
-
-
 .column.right {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
-
 
 
 .widget {
@@ -458,27 +439,13 @@ body{
 </div>
 
 <section class="hero">
+        <video autoplay muted loop class="hero-video"><source src="{% static 'first_app/videos/hero-home.mp4' %}"type="video/mp4"></video>
     <div class="hero-content">
+
+
+
         <h1>We are supernova storytellers</h1>
                 <p>Forging stories in the constellation of Bellatrix,<br> light years of creativity.</p>
-                        <a href="#work" class="scroll-indicator">↓</a>
-                         <div class="hero-stars">
-    <span class="star" style="top: 10%; left: 50%;"></span>
-    <span class="star" style="top: 30%; left: 40%;"></span>
-    <span class="star" style="top: 50%; left: 55%;"></span>
-    <span class="star" style="top: 70%; left: 45%;"></span>
-    <span class="star" style="top: 85%; left: 60%;"></span>
-        <span class="star" style="top: 10%; left: 50%;"></span>
-    <span class="star" style="top: 20%; left: 40%;"></span>
-    <span class="star" style="top: 40%; left: 55%;"></span>
-    <span class="star" style="top: 7%; left: 45%;"></span>
-    <span class="star" style="top: 5%; left: 60%;"></span>
-        <span class="star" style="top: 1%; left: 5%;"></span>
-    <span class="star" style="top: 30%; left: 4%;"></span>
-    <span class="star" style="top: 50%; left: 25%;"></span>
-    <span class="star" style="top: 7%; left: 75%;"></span>
-    <span class="star" style="top: 85%; left: 10%;"></span>
-                         </div>
 
     </div>
 </section>
@@ -578,9 +545,10 @@ body{
     </div>
 
 <div class="footer-center-links">
-        <a href="#">About</a>
         <a href="#">Work</a>
-        <a href="#">Other</a>
+        <a href="{% url 'contact' %}">Studio</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact</a>
     </div>
 
 

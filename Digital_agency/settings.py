@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import resend
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR/'templates'
@@ -25,7 +26,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-fallback-key')
 
 #
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -33,6 +33,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
 
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
 RESEND_API_KEY = os.getenv('RESEND_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = "True" #os.environ.get("DEBUG", "False") ==
