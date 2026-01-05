@@ -36,7 +36,7 @@ CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
 RESEND_API_KEY = os.getenv('RESEND_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = "True" #os.environ.get("DEBUG", "False") ==
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','bellatrix.onrender.com',]
 
