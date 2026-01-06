@@ -17,6 +17,11 @@
 body{
     font-family: sans-serif;
     margin: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+body.loaded {
+    opacity: 1;
 }
 
 ::-webkit-scrollbar {
@@ -154,8 +159,9 @@ body{
 
 
 </style>
-
 <body>
+
+
   <div class="nav-wrap">
     <nav class="nav-pill">
     <div class="nav-menu-btn" id="menuBtn">
@@ -191,16 +197,24 @@ menuBtn.addEventListener("click", () => {
 });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    document.body.classList.add("loaded");
+    document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.body.classList.add("loaded");
+    }, 100);
     document.querySelectorAll("a[href]").forEach(link => {
-        if(link.target !== "_blank" && !link.href.includes("#")) {
+        if (
+            link.target !== "_blank" &&
+            !link.href.includes("#") &&
+            link.hostname === window.location.hostname &&
+            !link.href.includes("mailto:")
+        ) {
             link.addEventListener("click", e => {
                 e.preventDefault();
+                const targetUrl = link.href;
                 document.body.classList.remove("loaded");
                 setTimeout(() => {
-                    window.location = link.href;
-                }, 400);
+                    window.location.href = targetUrl;
+                }, 800);
             });
         }
     });

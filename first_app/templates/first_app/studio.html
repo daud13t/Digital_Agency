@@ -34,6 +34,14 @@ body{
     z-index: 0;
     pointer-events: none;
     filter: brightness(0.4);
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 1.2s ease-in-out, transform 1.5s ease-out;
+}
+
+body.loaded .studio-bg {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .img-collage{
@@ -52,8 +60,17 @@ body{
     aspect-ratio: 3/4;
     object-fit:cover;
     border-radius:2px;
-}
+    background-color: #0a0a0a;
+    display: block;
+    content-visibility: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    animation: fadeInSmooth 0.6s ease-out forwards;
 
+}
+.loaded .img-collage img {
+    opacity: 1;
+}
 
 .studio-hero-text{
     position:relative;
@@ -148,9 +165,13 @@ body{
     text-decoration:none;
 }
 
-
+@keyframes fadeInSmooth {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 </style>
+
 <section class="studio-hero">
 <img class="studio-bg" src="{% static 'first_app/img/bg_squares.jpg' %}">
 
