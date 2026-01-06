@@ -35,6 +35,58 @@ body{
     background-color: #0b0b0b;
 }
 
+
+
+
+
+
+#loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    transition: opacity 1s ease;
+}
+
+#video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 90px;
+    left: 8%;
+    width: 84%;
+    height: 14px;
+    background: rgba(255,255,255,0.15);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+
+    background: white;
+    transition: width 0.2s linear;
+}
+
+.percent {
+    position: absolute;
+    bottom: 30px;
+    right: 8%;
+    font-family: 'Press Start 2P',sans-serif;
+    font-size: 42px;
+    color: white;
+}
+
+
+
+
+
 /* ##########sections########### */
 .sec-heading{
     text-align: center;
@@ -368,12 +420,24 @@ body{
 
 </style>
 
+
+
+<div id="loader">
+    <video id="video" src="{% static 'first_app/videos/12656_Big_Bang_1080.webm' %}" autoplay muted loop playsinline></video>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <div class="percent" id="percent">0%</div>
+</div>
+
+
+
+
 <section class="hero">
         <video autoplay muted loop class="hero-video" ><source src="{% static 'first_app/videos/hero-home.mp4' %}" type="video/mp4"></video>
     <div class="hero-content">
-
-
-
         <h1>We are supernova storytellers</h1>
                 <p>Forging stories in the constellation of Bellatrix,<br> light years of creativity.</p>
 
@@ -476,7 +540,7 @@ body{
 
 <div class="footer-center-links">
         <a href="#">Work</a>
-        <a href="{% url 'contact' %}">Studio</a>
+        <a href="{% url 'studio' %}">Studio</a>
         <a href="{% url 'about' %}">About</a>
         <a href="{% url 'contact' %}">Contact</a>
     </div>
@@ -484,5 +548,70 @@ body{
 
 </section>
 
+
+<script>
+window.addEventListener('load', async () => {
+    const loader = document.getElementById('loader');
+    const fill = document.getElementById('progress-fill');
+    const text = document.getElementById('percent');
+
+    const images = Array.from(document.querySelectorAll('img'));
+    const videos = Array.from(document.querySelectorAll('video'));
+
+    const assets = [...images, ...videos];
+    const total = assets.length;
+    let loaded = 0;
+
+    function update() {
+        loaded++;
+        const percent = total ? Math.round((loaded / total) * 100) : 100;
+        fill.style.width = percent + '%';
+        text.innerText = percent + '%';
+
+        if (percent >= 100) {
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 1000);
+            }, 500);
+        }
+    }
+
+    if (total === 0) {
+        fill.style.width = '100%';
+        text.innerText = '100%';
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 500);
+        return;
+    }
+
+    assets.forEach(asset => {
+        if (asset.tagName === 'IMG') {
+            if (asset.complete) update();
+            else asset.addEventListener('load', update);
+        } else if (asset.tagName === 'VIDEO') {
+            if (asset.readyState >= 2) update();
+            else asset.addEventListener('loadeddata', update);
+        }
+    });
+
+    await document.fonts.ready;
+});
+</script>
+
+
+
+
+
+<script>
+const track = document.querySelector('.slider-track');
+const slides = document.querySelectorAll('.slide');
+
+let index = 0;
+
+setInterval(() => {
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+}, 4000);
+</script>
 
 {% endblock content %}

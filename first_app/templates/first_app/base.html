@@ -34,57 +34,6 @@ body{
   background: #888;
 }
 
-
-
-
-#loader {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 9999;
-    transition: opacity 1s ease;
-}
-
-#video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6);
-}
-
-.progress-bar {
-    position: absolute;
-    bottom: 90px;
-    left: 8%;
-    width: 84%;
-    height: 14px;
-    background: rgba(255,255,255,0.15);
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-
-    background: white;
-    transition: width 0.2s linear;
-}
-
-.percent {
-    position: absolute;
-    bottom: 30px;
-    right: 8%;
-    font-family: 'Press Start 2P',sans-serif;
-    font-size: 42px;
-    color: white;
-}
-
-
-
-
-
-
 .nav-wrap {
     position: sticky;
     top: 32px;
@@ -207,22 +156,6 @@ body{
 </style>
 
 <body>
-
-
-
-<div id="loader">
-    <video id="video" src="{% static 'first_app/videos/12656_Big_Bang_1080.webm' %}" autoplay muted loop playsinline></video>
-
-    <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
-    </div>
-
-    <div class="percent" id="percent">0%</div>
-</div>
-
-
-
-
   <div class="nav-wrap">
     <nav class="nav-pill">
     <div class="nav-menu-btn" id="menuBtn">
@@ -247,70 +180,7 @@ body{
 
 {% endblock content %}
 </body>
-
-<script>
-const track = document.querySelector('.slider-track');
-const slides = document.querySelectorAll('.slide');
-
-let index = 0;
-
-setInterval(() => {
-    index = (index + 1) % slides.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
-}, 4000);
-</script>
-
-<script>
-window.addEventListener('load', async () => {
-    const loader = document.getElementById('loader');
-    const fill = document.getElementById('progress-fill');
-    const text = document.getElementById('percent');
-
-    // Track ALL images and videos on the page
-    const images = Array.from(document.querySelectorAll('img'));
-    const videos = Array.from(document.querySelectorAll('video'));
-
-    const assets = [...images, ...videos];
-    const total = assets.length;
-    let loaded = 0;
-
-    function update() {
-        loaded++;
-        const percent = total ? Math.round((loaded / total) * 100) : 100;
-        fill.style.width = percent + '%';
-        text.innerText = percent + '%';
-
-        if (percent >= 100) {
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 1000);
-            }, 500);
-        }
-    }
-
-    if (total === 0) {
-        fill.style.width = '100%';
-        text.innerText = '100%';
-        loader.style.opacity = '0';
-        setTimeout(() => loader.style.display = 'none', 500);
-        return;
-    }
-
-    assets.forEach(asset => {
-        if (asset.tagName === 'IMG') {
-            if (asset.complete) update();
-            else asset.addEventListener('load', update);
-        } else if (asset.tagName === 'VIDEO') {
-            if (asset.readyState >= 2) update();
-            else asset.addEventListener('loadeddata', update);
-        }
-    });
-
-    await document.fonts.ready;
-});
-</script>
-
-
+<!--for_base-->
 <script>
 const menuBtn = document.getElementById("menuBtn");
 const navExpand = document.getElementById("navExpand");
