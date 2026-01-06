@@ -14,30 +14,54 @@ body{
 .studio-hero{
     position:relative;
     min-height:100vh;
+    margin-top:-100px;
     display:flex;
-    margin-top: -100px;
     align-items:flex-end;
     padding:80px;
+    background: transparent;
     overflow:hidden;
 }
 
-.studio-video{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:0;
-    pointer-events:none;
+
+.studio-bg {
+    position: absolute;
+    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+    filter: brightness(0.4);
 }
+
+.img-collage{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 23px;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+.img-collage img{
+    width: 100%;
+    max-width: 459px;
+    aspect-ratio: 3/4;
+    object-fit:cover;
+    border-radius:2px;
+}
+
 
 .studio-hero-text{
     position:relative;
-    z-index:1;
+    z-index:2;
 }
 
 .studio-hero-text h1{
-    font-size:5rem;
+    font-size:5.5rem;
     font-weight:700;
     letter-spacing:.04em;
 }
@@ -128,10 +152,7 @@ body{
 
 </style>
 <section class="studio-hero">
-<video muted autoplay loop class="studio-video">
-    <source src="{% static 'first_app/videos/stars.mp4' %}" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+<img class="studio-bg" src="{% static 'first_app/img/bg_squares.jpg' %}">
 
     <div class="studio-hero-text">
         <h1>STUDIO</h1>
@@ -147,9 +168,13 @@ body{
 </section>
 
 <section class="studio-manifesto dark">
-    <h2>EVERY SIGNAL HAS A SOURCE.</h2>
-    <p>Before light, there is pressure.
-    Before motion, there is mass.</p>
+    <div class="img-collage">
+        <img src="{% static 'first_app/img/minimal.jpg' %}">
+        <img src="{% static 'first_app/img/gravity.jpg' %}">
+        <img src="{% static 'first_app/img/photoshoot.jpg' %}">
+
+
+    </div>
 </section>
 
 <section class="studio-process">
