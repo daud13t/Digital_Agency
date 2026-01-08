@@ -22,6 +22,9 @@ class About(generic.TemplateView):
 class Studio(generic.TemplateView):
     template_name = 'first_app/studio.html'
 
+class Work(generic.TemplateView):
+    template_name = 'first_app/work.html'
+
 
 def contact_view(request):
     sent = False

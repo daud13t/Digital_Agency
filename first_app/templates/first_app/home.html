@@ -32,7 +32,7 @@
 
 
 body{
-    background-color: #0b0b0b;
+    background-color: #0e0e0e;
 }
 
 
@@ -98,8 +98,8 @@ html, body {
     font-family: "Inter", sans-serif;
     color: white;
     font-weight: 450;
-    font-size: 4rem;
-    padding: 90px 20px 0 20px;
+    font-size: 5rem;
+    padding: 50px 20px 0 20px;
     white-space: nowrap;
     margin-bottom:65px;
 }
@@ -188,6 +188,33 @@ html, body {
     margin-bottom: 120px;
 }
 
+/*astro quote section##############################*/
+.astro-quote {
+    width: 100%;
+    min-height: 60vh;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #171717;
+    box-sizing: border-box;
+
+}
+.astro-quote-inner {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.astro-quote h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 6vw, 5rem);
+    line-height: 1.5;
+    color: #fff;
+    margin: 0 0 20px 0;
+    word-wrap: break-word;
+}
 
 /* ==============WORK================= */
 
@@ -420,12 +447,15 @@ html, body {
     font-size: 1.2rem;
     font-weight: 300;
     text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
 
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
 .contact-btn:hover {
-    transform: translateY(-1px);
+    transform: translateY(-4px) scale(1.05);
+    background: #191919;
 }
+
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -454,10 +484,18 @@ html, body {
     color: white;
     font-size: 1.2rem;
     text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
+.footer-center-links a:hover {
+    transform: translateY(-3px) scale(1.05);
+    color: #a087c5;
+}
 
-
+.footer a,
+.footer button {
+    cursor: pointer;
+}
 
 </style>
 
@@ -489,7 +527,7 @@ html, body {
 <section id="work" class="work">
 
     <div class="sec-heading">
-        <a href="#"><h1 id="h1-work" class="hover-arrow">Our Work<span class="arrow">↗</span></h1></a>
+        <a href="#"><h1 id="h1-work" class="hover-arrow">Work<span class="arrow">↗</span></h1></a>
     </div>
 
     <div class="work-slider">
@@ -515,6 +553,12 @@ html, body {
 
     <div class="bottom-button">
         <a class="bottom-text">View all projects</a>
+    </div>
+</section>
+
+    <section class="astro-quote">
+    <div class="astro-quote-inner">
+        <h2>We are stardust, dreaming among the galaxies.</h2>
     </div>
 </section>
 
@@ -581,7 +625,7 @@ html, body {
     </div>
 
 <div class="footer-center-links">
-        <a href="#">Work</a>
+        <a href="{% url 'work' %}">Work</a>
         <a href="{% url 'studio' %}">Studio</a>
         <a href="{% url 'about' %}">About</a>
         <a href="{% url 'contact' %}">Contact</a>
