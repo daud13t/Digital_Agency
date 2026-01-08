@@ -12,6 +12,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=BBH+Bartle&family=BBH+Bogle&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+
+
+    <link rel="preload" as="image" href="{% static 'first_app/img/minimal.jpg' %}">
+    <link rel="preload" as="image" href="{% static 'first_app/img/gravity.jpg' %}">
+    <link rel="preload" as="image" href="{% static 'first_app/img/photoshoot.jpg' %}">
+
+
 </head>
 <style>
 body{
@@ -161,7 +169,6 @@ body.loaded {
 </style>
 <body>
 
-
   <div class="nav-wrap">
     <nav class="nav-pill">
     <div class="nav-menu-btn" id="menuBtn">
@@ -175,8 +182,8 @@ body.loaded {
 
   <div class="nav-expand" id="navExpand">
   <div class="nav-expand-inner">
-    <a class="links-burger" href="#">Work</a>
     <a class="links-burger" href="{% url 'studio' %}">Studio</a>
+    <a class="links-burger" href="#">Work</a>
     <a class="links-burger" href="{% url 'about' %}">About</a>
     <a class="links-burger" href="{% url 'contact' %}">Contact</a>
   </div>
@@ -220,4 +227,22 @@ menuBtn.addEventListener("click", () => {
     });
 });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const workImages = Array.from(document.querySelectorAll('.work img')).map(img => img.src);
+
+    const extraImages = [
+        "{% static 'first_app/img/minimal.jpg' %}",
+        "{% static 'first_app/img/gravity.jpg' %}",
+        "{% static 'first_app/img/photoshoot.jpg' %}"
+    ];
+    const allImages = [...workImages, ...extraImages];
+    allImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+});
+</script>
+
 </html>

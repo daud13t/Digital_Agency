@@ -60,7 +60,7 @@ body.loaded .studio-bg {
     aspect-ratio: 3/4;
     object-fit:cover;
     border-radius:2px;
-    background-color: #0a0a0a;
+    background-color: #393939;
     display: block;
     content-visibility: auto;
     opacity: 0;
@@ -170,6 +170,31 @@ body.loaded .studio-bg {
     to { opacity: 1; transform: translateY(0); }
 }
 
+
+@media (max-width: 768px) {
+    .studio-process {
+        padding: 80px 20px; /* smaller padding */
+    }
+
+    .process-row {
+        grid-template-columns: 50px 1fr; /* shrink number column, let text take remaining */
+        gap: 20px; /* smaller gap */
+        margin-bottom: 40px; /* smaller spacing */
+    }
+
+    .process-row h3 {
+        font-size: 1.6rem;
+    }
+
+    .process-row p {
+        font-size: 1.4rem;
+    }
+
+    .process-row span {
+        font-size: 1.5rem;
+    }
+}
+
 </style>
 
 <section class="studio-hero">
@@ -190,11 +215,9 @@ body.loaded .studio-bg {
 
 <section class="studio-manifesto dark">
     <div class="img-collage">
-        <img src="{% static 'first_app/img/minimal.jpg' %}">
-        <img src="{% static 'first_app/img/gravity.jpg' %}">
-        <img src="{% static 'first_app/img/photoshoot.jpg' %}">
-
-
+        <img src="{% static 'first_app/img/minimal.jpg' %}" decoding="async">
+        <img src="{% static 'first_app/img/gravity.jpg' %}" decoding="async">
+        <img src="{% static 'first_app/img/photoshoot.jpg' %}" decoding="async">
     </div>
 </section>
 

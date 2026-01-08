@@ -36,7 +36,9 @@ body{
 }
 
 
-
+html, body {
+    overflow-x: hidden;
+}
 
 
 
@@ -111,14 +113,8 @@ body{
     justify-content: center;
     color: rgba(83, 83, 83, 0.6);
     padding-top: 40px;
-    overflow: hidden;
-
-
 }
-.bottom-button:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-}
+
 .bottom-text{
     font-family: 'Funnel Sans', sans-serif;
     font-size: 1.3rem;
@@ -128,6 +124,18 @@ body{
     padding: 5px;
     border-radius: 30px;
 }
+
+
+.bottom-text {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+}
+
+.bottom-button:hover .bottom-text {
+    transform: scale(1.1);
+}
+
 
 /*###### ######*/
 
@@ -188,29 +196,27 @@ body{
     flex-direction: column;
     padding-bottom: 120px;
 }
-
 .work-slider {
     width: 100%;
-      overflow: hidden;
-    display: flex;
-    justify-content: center;
+    overflow: hidden;
+    position: relative;
 }
 
 .slider-track {
-    width: 100%;
-    max-width: 1400px;
     display: flex;
+    width: 100%;
     transition: transform 1s ease-in-out;
 }
 
-/* Cinematic slide */
 .slide {
-    min-width: 100%;
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    flex-shrink: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    padding: 0 40px;
-    aspect-ratio: 21 / 9;
+    padding: 0 27px;
+    box-sizing: border-box;
 }
 
 /* Images */
@@ -223,7 +229,6 @@ body{
     transition: transform 0.6s ease, filter 0.6s ease;
 }
 
-/* Subtle cinematic hover */
 .slide img:hover {
     transform: scale(1.03);
     filter: brightness(1);
@@ -284,28 +289,64 @@ body{
   margin: 0 0 10px 0;
   font-size: 1.3rem;
 }
+.widget {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
 
-.widget p {
-  margin: 0;
-  font-size: 1.2rem;
-  line-height: 1.2;
-  color: #ccc;
+  background: radial-gradient(
+      circle at top left,
+      rgba(158, 141, 186, 0.18),
+      rgba(26, 26, 26, 0.9) 60%
+  );
+
+  color: #fff;
 }
+
+
 
 .widget:hover {
   transform: translateY(-2px) scale(1.01);
-  border: 1px solid #fff;
+  border: 1px solid #a087c5;
 }
+
+.services-box { padding: 0 15px; }
+
 
 /* Responsive */
 @media screen and (max-width: 768px) {
   .services-box {
     grid-template-columns: 1fr;
+
       max-width: 80%;
   }
 
   .column.right {
     flex-direction: column;
+  }
+}
+
+/*##########################for specific size*/
+
+@media (min-width: 768px) and (max-width: 889px) {
+  .services-box {
+    grid-template-columns: repeat(2, 1fr); /* force 2 columns */
+    gap: 20px; /* smaller gap */
+  }
+
+  /* remove max-height on .short so it can stretch like others */
+  .services-box .widget.short {
+    max-height: none;
+  }
+
+  /* make sure all widgets stretch equally in each row */
+  .services-box .widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
   }
 }
 
@@ -423,17 +464,6 @@ body{
 
 
 
-<div style="position: absolute; width: 0; height: 0; overflow: hidden; z-index: -1;">
-    <img src="{% static 'first_app/img/minimal.jpg' %}" decoding="async" loading="eager">
-    <img src="{% static 'first_app/img/gravity.jpg' %}" decoding="async" loading="eager">
-    <img src="{% static 'first_app/img/photoshoot.jpg' %}" decoding="async" loading="eager">
-</div>
-
-
-
-
-
-
 <div id="loader">
     <video id="video" autoplay muted loop playsinline src="{% static 'first_app/videos/12656_Big_Bang_1080.webm' %}"></video>
 
@@ -448,7 +478,7 @@ body{
 
 
 <section class="hero">
-        <video autoplay muted loop class="hero-video" preload="auto" ><source src="{% static 'first_app/videos/hero-home_small.mp4' %}" type="video/mp4"></video>
+        <video autoplay muted loop class="hero-video" preload="auto" ><source src="{% static 'first_app/videos/hero-home.mp4' %}" type="video/mp4"></video>
     <div class="hero-content">
         <h1>We are supernova storytellers</h1>
                 <p>Forging stories in the constellation of Bellatrix,<br> light years of creativity.</p>
@@ -546,7 +576,7 @@ body{
     <div class="footer-right">
         <div class="footer-con">
             <h4>Don't hesitate to contact!</h4>
-            <a href="" class="contact-btn">Contact</a>
+            <a href="{% url 'contact' %}" class="contact-btn">Contact</a>
         </div>
     </div>
 
