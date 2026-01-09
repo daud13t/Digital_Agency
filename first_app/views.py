@@ -48,7 +48,7 @@ def contact_view(request):
             message = form.cleaned_data['message']
             try:
                 resend.Emails.send({
-                    'from': 'Contact Form <onboarding@bellatrix.com.com>',
+                    'from': 'Contact Form <onboarding@bellatrix.com>',
                     'to': ['daud13t@gmail.com'],
                     'subject': f'New contact from {name}',
                     'html': f"""
