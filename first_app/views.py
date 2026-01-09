@@ -25,6 +25,15 @@ class Studio(generic.TemplateView):
 class Work(generic.TemplateView):
     template_name = 'first_app/work.html'
 
+class Web1(generic.TemplateView):
+    template_name = 'first_app/web1.html'
+class Web2(generic.TemplateView):
+    template_name = 'first_app/web2.html'
+class Web3(generic.TemplateView):
+    template_name = 'first_app/web3.html'
+class Web4(generic.TemplateView):
+    template_name = 'first_app/web4.html'
+
 
 def contact_view(request):
     sent = False

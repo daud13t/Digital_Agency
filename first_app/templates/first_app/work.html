@@ -1,27 +1,76 @@
 {% extends 'first_app/base.html' %}
 {% load static %}
 {% block content %}
-<title>
-Work - Bellatrix
-</title>
+<title>Work - Bellatrix</title>
 
 <style>
 body{
     background-color: #0c0c0c;
+    font-family:'Inter',sans-serif;
+    margin: 0;
+}
+
+.work{
+    padding: 30px;
     overflow: hidden;
+}
+
+.work-content h1{
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.work-gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(620px, 1fr));
+    gap: 20px;
+}
+
+.work-gallery img{
+    width: 100%;
+    height: 535px;
+    object-fit: cover;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    display: block;
+}
+.loaded .work-gallery img{
+    opacity: 1;
+}
+
+.image:hover{
+    transform: translateY(-4px) scale(1.05);
+    background: #191919;
 }
 </style>
 
-    <section class="work">
+<section class="work">
+    <div class="work-content">
+        <h1>Our Work</h1>
+        <div class="work-gallery">
+            <a href="{% url 'web1' %}"><img data-src="{% static 'first_app/img/gravity.jpg' %}" src="{% static 'first_app/img/gravity.jpg' %}"></a>
+            <a href="{% url 'web2' %}"><img data-src="{% static 'first_app/img/bg_squares.jpg' %}" src="{% static 'first_app/img/bs_squares.jpg' %}"></a>
+            <a href="{% url 'web3' %}"><img data-src="{% static 'first_app/img/minimal.jpg' %}" src="{% static 'first_app/img/minimal.jpg' %}"></a>
+            <a href="{% url 'web4' %}"><img data-src="{% static 'first_app/img/photoshoot.jpg' %}" src="{% static 'first_app/img/photoshoot.jpg' %}"></a>
+        </div>
+    </div>  nbv
+</section>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const galleryImages = document.querySelectorAll('.work-gallery img');
 
+    galleryImages.forEach(img => {
+        const highRes = new Image();
+        highRes.src = img.dataset.src;
+        highRes.onload = () => img.src = highRes.src;
+    });
 
-    </section>
-
-
-
-
-
-
+    window.addEventListener('load', () => document.body.classList.add('loaded'));
+});
+</script>
 
 {% endblock content %}
