@@ -8,23 +8,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=BBH+Bartle&family=BBH+Bogle&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
-    <link rel="preload" as="image" href="{% static 'first_app/img/minimal.jpg' %}">
-    <link rel="preload" as="image" href="{% static 'first_app/img/gravity.jpg' %}">
-    <link rel="preload" as="image" href="{% static 'first_app/img/photoshoot.jpg' %}">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=BBH+Bartle&family=BBH+Bogle&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <style>
 body{
     font-family: sans-serif;
-    margin: 0;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
     background-color: #050505;
+    margin-top:32px;
+    padding: 0;
 }
 body.loaded {
     opacity: 1;
@@ -60,7 +56,7 @@ body.loaded {
     position: absolute;
     width: 95%;
     max-width: 1200px;
-    background: rgba(20, 20, 20, 0.6);
+    background: rgba(20, 20, 20, 0.4);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -77,18 +73,18 @@ body.loaded {
 .nav-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 15px;
     height: 70px;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
 }
 
-
-
-
 .nav-logo {
+    position: absolute;
     font-family: "Inter", sans-serif;
+    left: 30px;
     font-weight: 700;
     font-size: 1.5rem;
     color: white;
@@ -240,6 +236,61 @@ body.menu-active .blur-overlay {
 .page-content-wrapper {
     transition: transform 0.4s ease;
 }
+
+/* =========================
+   MOBILE HAMBURGER MENU
+   ========================= */
+
+.mobile-drawer {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    padding: 28px 0 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    align-items: center;
+
+    background: rgba(20,20,20,0.4);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.mobile-drawer a {
+    font-family: "Inter", sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+}
+
+.mobile-drawer a:hover {
+    color: #fff;
+}
+
+.nav-pill.mobile-open .mobile-drawer {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+@media (min-width: 769px) {
+    .mobile-drawer {
+        display: none;
+    }
+}
+
+
+
+
+
+
 </style>
 <body>
 
@@ -248,18 +299,31 @@ body.menu-active .blur-overlay {
 <div class="nav-wrap">
     <nav class="nav-pill" id="navbar">
         <div class="nav-header">
-            <a href="#" class="nav-logo">BELLATRIX</a>
+            <a href="{% url 'home' %}" class="nav-logo">BELLATRIX</a>
+
+            <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            </div>
 
             <ul class="nav-menu">
-                <li><a class="nav-link" data-target="work">Work</a></li>
-                <li><a class="nav-link" data-target="studio">Studio</a></li>
-                <li><a href="#" class="nav-link-standard">About</a></li>
-                <li><a href="#" class="nav-link-standard">Contact</a></li>
+                <li><a class="nav-link" data-target="work" href="{% url 'work' %}">Work</a></li>
+                <li><a class="nav-link" data-target="studio" href="{% url 'studio' %}">Studio</a></li>
+                <li><a href="{% url 'about' %}" class="nav-link-standard">About</a></li>
+                <li><a href="{% url 'contact' %}" class="nav-link-standard">Contact</a></li>
             </ul>
         </div>
 
-        <div class="mega-content-wrapper" id="megaWrapper">
+        <!-- MOBILE OVERLAY MENU -->
+        <div class="mobile-drawer" id="mobileDrawer">
+        <a href="{% url 'work' %}">Work</a>
+         <a href="{% url 'studio' %}">Studio</a>
+        <a href="{% url 'about' %}">About</a>
+         <a href="{% url 'contact' %}">Contact</a>
+        </div>
 
+        <div class="mega-content-wrapper" id="megaWrapper">
             <div class="mega-section" id="work">
                 <div class="mega-col">
                     <h3>Case Studies</h3>
@@ -299,19 +363,59 @@ body.menu-active .blur-overlay {
                     </ul>
                 </div>
             </div>
-
         </div>
     </nav>
 </div>
 
 <main id="mainContent" class="page-content-wrapper">
-    {% block content %}
-    {% endblock content %}
 </main>
 
+{% block content %}
+
+{% endblock content %}
+
+
+
 </body>
+
 <script>
-    const navbar = document.getElementById('navbar');
+const burger = document.getElementById("hamburger");
+const navbar = document.getElementById("navbar");
+
+function openMenu() {
+    navbar.classList.add("mobile-open");
+    burger.classList.add("active");
+    document.body.classList.add("menu-active");
+}
+
+function closeMenu() {
+    navbar.classList.remove("mobile-open");
+    burger.classList.remove("active");
+    document.body.classList.remove("menu-active");
+}
+
+burger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    navbar.classList.contains("mobile-open")
+        ? closeMenu()
+        : openMenu();
+});
+
+document.addEventListener("click", (e) => {
+    if (!navbar.contains(e.target)) {
+        closeMenu();
+    }
+});
+
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+        closeMenu();
+    }
+});
+</script>
+
+
+<script>
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.mega-section');
     const navWrap = document.querySelector('.nav-wrap');
@@ -327,7 +431,6 @@ body.menu-active .blur-overlay {
     navLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
             clearTimeout(timeout);
-
             const targetId = link.getAttribute('data-target');
             const targetSection = document.getElementById(targetId);
 
@@ -338,13 +441,13 @@ body.menu-active .blur-overlay {
             navbar.classList.add('active');
             document.body.classList.add('menu-active');
 
-            const sectionHeight = targetSection.offsetHeight;
-            navbar.style.height = `${70 + sectionHeight}px`;
+            const totalHeight = 70 + targetSection.scrollHeight;
+            navbar.style.height = totalHeight + 'px';
         });
     });
 
-    navWrap.addEventListener('mouseleave', () => {
-        timeout = setTimeout(resetNav, 150);
+    navbar.addEventListener('mouseleave', () => {
+        timeout = setTimeout(resetNav, 200);
     });
 
     navbar.addEventListener('mouseenter', () => {
@@ -354,41 +457,9 @@ body.menu-active .blur-overlay {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        document.body.classList.add("loaded");
-    }, 100);
-    document.querySelectorAll("a[href]").forEach(link => {
-        if (
-            link.target !== "_blank" &&
-            !link.href.includes("#") &&
-            link.hostname === window.location.hostname &&
-            !link.href.includes("mailto:")
-        ) {
-            link.addEventListener("click", e => {
-                e.preventDefault();
-                const targetUrl = link.href;
-                document.body.classList.remove("loaded");
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 800);
-            });
-        }
+        setTimeout(() => {
+            document.body.classList.add("loaded");
+        }, 100);
     });
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const workImages = Array.from(document.querySelectorAll('.work img')).map(img => img.src);
-    const extraImages = [
-        "{% static 'first_app/img/minimal.jpg' %}",
-        "{% static 'first_app/img/gravity.jpg' %}",
-        "{% static 'first_app/img/photoshoot.jpg' %}"
-    ];
-    const allImages = [...workImages, ...extraImages];
-    allImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-    });
-});
 </script>
 </html>

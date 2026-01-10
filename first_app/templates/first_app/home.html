@@ -33,6 +33,8 @@
 
 body{
     background-color: #000000;
+    margin-top: 0 !important;
+    margin: 0;
 }
 
 
@@ -359,16 +361,15 @@ html, body {
 
 @media (min-width: 768px) and (max-width: 889px) {
   .services-box {
-    grid-template-columns: repeat(2, 1fr); /* force 2 columns */
-    gap: 20px; /* smaller gap */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
-  /* remove max-height on .short so it can stretch like others */
+
   .services-box .widget.short {
     max-height: none;
   }
 
-  /* make sure all widgets stretch equally in each row */
   .services-box .widget {
     display: flex;
     flex-direction: column;
@@ -523,7 +524,7 @@ html, body {
     width: 820px;
     aspect-ratio: 3 / 2;
     position: relative;
-    margin: 35px auto 20px;
+    margin: 35px auto 40px;
     border-radius: 28px;
     overflow: hidden;
     background: rgba(16, 16, 16, 0.9);
