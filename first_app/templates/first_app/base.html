@@ -13,12 +13,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=BBH+Bartle&family=BBH+Bogle&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
-
-
     <link rel="preload" as="image" href="{% static 'first_app/img/minimal.jpg' %}">
     <link rel="preload" as="image" href="{% static 'first_app/img/gravity.jpg' %}">
     <link rel="preload" as="image" href="{% static 'first_app/img/photoshoot.jpg' %}">
-
 
 </head>
 <style>
@@ -27,6 +24,7 @@ body{
     margin: 0;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
+    background-color: #050505;
 }
 body.loaded {
     opacity: 1;
@@ -48,206 +46,312 @@ body.loaded {
 }
 
 .nav-wrap {
-    position: sticky;
+    position: fixed;
     top: 32px;
+    left: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 1000;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+.nav-pill {
+    position: absolute;
+    width: 95%;
+    max-width: 1200px;
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 45px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+    overflow: hidden;
+    height: 70px;
+    z-index: 1001;
+    pointer-events: auto;
+    will-change: height;
 }
 
-.nav-pill {
-    width: 97%;
-    max-width: 1400px;
-    padding: 0 24px;
-    margin-top: 1%;
+.nav-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: rgba(35, 35, 35, 0.07);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border-radius: 999px;
-    border: 1px solid rgba(0, 0, 0, 0.009);
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
-}
-
-
-.nav-center {
-    font-family: "Inter",sans-serif;
-    line-height: 1;
-    font-weight: 550;
-    font-size: 2.5rem;
-    text-decoration: none;
-    margin:20px 0;
-    color: rgb(255, 255, 255);
-}
-
-.nav-a{
-    text-decoration: none;
-}
-
-
-.nav-menu-btn span {
-    height: 2px;
-    width: 100%;
-    background: white;
-    border-radius: 2px;
-    transition: 0.4s ease;
-}
-
-.nav-menu-btn.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.nav-menu-btn.active span:nth-child(2) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-
-
-
-.nav-expand-inner a {
-    font-weight: 500;
-    text-decoration: none;
-    color: white;
-    opacity: 0.85;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.nav-expand-inner a:hover {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-.nav-pill {
     justify-content: space-between;
+    padding: 0 15px;
+    height: 70px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.nav-links {
-    display: flex;
-    gap: 36px;
-    margin-right: 24px;
+
+
+
+.nav-logo {
     font-family: "Inter", sans-serif;
-}
-
-.nav-item {
+    font-weight: 700;
+    font-size: 1.5rem;
     color: white;
-    font-weight: 500;
-    opacity: 0.75;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    z-index: 2;
 }
-
-.nav-item:hover {
-    opacity: 1;
-}
-
 
 .nav-menu {
-  display: flex;
-  gap: 36px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 0.85rem;
-  font-family: "Inter", sans-serif;
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    align-items: center;
 }
 
-.nav-menu-item {
-  position: relative;
-  padding: 6px 4px;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
-  transition: color 0.25s ease;
+.nav-link {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 24px 0;
+    font-weight: 500;
 }
 
-.nav-menu-item:hover {
-  color: white;
+.nav-link-standard{
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 24px 0;
+    font-weight: 500;
 }
 
-.nav-dropdown {
-  position: absolute;
-  top: 38px;
-  left: 0;
-  background: rgba(20, 20, 20, 0.65);
-  backdrop-filter: blur(16px);
-  border-radius: 8px;
-  padding: 12px 0;
-  display: none;
-  min-width: 180px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  z-index: 950;
+.nav-link:hover {
+    color: #fff;
 }
 
-.nav-menu-item:hover .nav-dropdown {
-  display: block;
+.mega-content-wrapper {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease 0.1s;
+    pointer-events: none;
 }
 
-.dropdown-link {
-  padding: 10px 22px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-  white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease;
+.nav-pill.active .mega-content-wrapper {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
-.dropdown-link:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
+.mega-section {
+    display: none;
+    padding: 20px 32px 40px 32px;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.mega-section.active {
+    display: flex;
+    justify-content: space-between;
+    animation: slideUpFade 0.4s ease forwards;
+}
 
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mega-col h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+}
+
+.mega-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mega-col li {
+    margin-bottom: 12px;
+}
+
+.mega-col a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.mega-col a:hover {
+    opacity: 0.7;
+}
+
+.featured-card {
+    width: 200px;
+    height: 120px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.9rem;
+}
+
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    pointer-events: none;
+    z-index: 900;
+    transition: backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
+    will-change: backdrop-filter;
+    visibility: hidden;
+}
+
+body.menu-active .blur-overlay {
+    visibility: visible;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.page-content-wrapper {
+    transition: transform 0.4s ease;
+}
 </style>
 <body>
-<div class="nav-wrap">
-  <nav class="nav-pill">
-    <a class="nav-a" href="{% url 'home' %}">
-      <h1 class="nav-center">BELLATRIX</h1>
-    </a>
 
-    <ul class="nav-menu">
-      <li class="nav-menu-item" data-menu="work">
-        Work
-        <ul class="nav-dropdown" id="dropdown-work">
-          <li class="dropdown-link">Work Option 1</li>
-          <li class="dropdown-link">Work Option 2</li>
-          <li class="dropdown-link">Work Option 3</li>
-        </ul>
-      </li>
-      <li class="nav-menu-item" data-menu="studio">
-        Studio
-        <ul class="nav-dropdown" id="dropdown-studio">
-          <li class="dropdown-link">Studio Option 1</li>
-          <li class="dropdown-link">Studio Option 2</li>
-          <li class="dropdown-link">Studio Option 3</li>
-        </ul>
-      </li>
-      <li class="nav-menu-item" data-menu="about">
-        About
-        <ul class="nav-dropdown" id="dropdown-about">
-          <li class="dropdown-link">About Option 1</li>
-          <li class="dropdown-link">About Option 2</li>
-          <li class="dropdown-link">About Option 3</li>
-        </ul>
-      </li>
-      <li class="nav-menu-item" data-menu="contact">
-        Contact
-        <ul class="nav-dropdown" id="dropdown-contact">
-          <li class="dropdown-link">Contact Option 1</li>
-          <li class="dropdown-link">Contact Option 2</li>
-          <li class="dropdown-link">Contact Option 3</li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+<div class="blur-overlay"></div>
+
+<div class="nav-wrap">
+    <nav class="nav-pill" id="navbar">
+        <div class="nav-header">
+            <a href="#" class="nav-logo">BELLATRIX</a>
+
+            <ul class="nav-menu">
+                <li><a class="nav-link" data-target="work">Work</a></li>
+                <li><a class="nav-link" data-target="studio">Studio</a></li>
+                <li><a href="#" class="nav-link-standard">About</a></li>
+                <li><a href="#" class="nav-link-standard">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="mega-content-wrapper" id="megaWrapper">
+
+            <div class="mega-section" id="work">
+                <div class="mega-col">
+                    <h3>Case Studies</h3>
+                    <ul>
+                        <li><a href="#">Fintech App</a></li>
+                        <li><a href="#">E-Commerce Redesign</a></li>
+                        <li><a href="#">AI Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="mega-col">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Finance</a></li>
+                        <li><a href="#">Automotive</a></li>
+                    </ul>
+                </div>
+                <div class="mega-col">
+                    <div class="featured-card">Featured Project Img</div>
+                </div>
+            </div>
+
+            <div class="mega-section" id="studio">
+                <div class="mega-col">
+                    <h3>Our Team</h3>
+                    <ul>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Designers</a></li>
+                        <li><a href="#">Developers</a></li>
+                    </ul>
+                </div>
+                <div class="mega-col">
+                    <h3>Culture</h3>
+                    <ul>
+                        <li><a href="#">Philosophy</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </nav>
 </div>
 
+<main id="mainContent" class="page-content-wrapper">
+    {% block content %}
+    {% endblock content %}
+</main>
 
-{% block content %}
-
-{% endblock content %}
 </body>
-<!--for_base-->
+<script>
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.mega-section');
+    const navWrap = document.querySelector('.nav-wrap');
+    let timeout;
+
+    function resetNav() {
+        navbar.style.height = '70px';
+        navbar.classList.remove('active');
+        document.body.classList.remove('menu-active');
+        sections.forEach(s => s.classList.remove('active'));
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+
+            const targetId = link.getAttribute('data-target');
+            const targetSection = document.getElementById(targetId);
+
+            if (!targetSection) return;
+
+            sections.forEach(s => s.classList.remove('active'));
+            targetSection.classList.add('active');
+            navbar.classList.add('active');
+            document.body.classList.add('menu-active');
+
+            const sectionHeight = targetSection.offsetHeight;
+            navbar.style.height = `${70 + sectionHeight}px`;
+        });
+    });
+
+    navWrap.addEventListener('mouseleave', () => {
+        timeout = setTimeout(resetNav, 150);
+    });
+
+    navbar.addEventListener('mouseenter', () => {
+        clearTimeout(timeout);
+    });
+</script>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
@@ -272,11 +376,9 @@ body.loaded {
     });
 });
 </script>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const workImages = Array.from(document.querySelectorAll('.work img')).map(img => img.src);
-
     const extraImages = [
         "{% static 'first_app/img/minimal.jpg' %}",
         "{% static 'first_app/img/gravity.jpg' %}",
@@ -289,53 +391,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
-
-
-
-<script>
-const items = document.querySelectorAll(".nav-item");
-const panel = document.getElementById("navHoverPanel");
-const grid = document.getElementById("panelGrid");
-
-const data = {
-  work: [
-    ["All Projects", "{% url 'work' %}"],
-    ["Case Studies", "{% url 'work' %}"],
-    ["Photography", "{% url 'work' %}"],
-    ["Experiments", "{% url 'work' %}"]
-  ],
-  studio: [
-    ["Process", "{% url 'studio' %}"],
-    ["Capabilities", "{% url 'studio' %}"],
-    ["Tools & Stack", "{% url 'studio' %}"],
-    ["Culture", "{% url 'studio' %}"]
-  ],
-  about: [
-    ["Our Story", "{% url 'about' %}"],
-    ["Values", "{% url 'about' %}"],
-    ["Timeline", "{% url 'about' %}"]
-  ],
-  contact: [
-    ["Start a Project", "{% url 'contact' %}"],
-    ["Email Us", "{% url 'contact' %}"],
-    ["Social Links", "{% url 'contact' %}"]
-  ]
-};
-
-items.forEach(item => {
-  item.addEventListener("mouseenter", () => {
-    const key = item.dataset.panel;
-    grid.innerHTML = data[key]
-      .map(([text, link]) => `<a href="${link}">${text}</a>`)
-      .join("");
-    panel.classList.add("show");
-  });
-});
-
-panel.addEventListener("mouseleave", () => {
-  panel.classList.remove("show");
-});
-</script>
-
-
 </html>
