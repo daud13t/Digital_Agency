@@ -33,10 +33,20 @@ body{
     height: 535px;
     object-fit: cover;
     border-radius: 4px;
+    overflow: hidden;
     opacity: 0;
     transition: opacity 0.6s ease-in-out;
     display: block;
 }
+
+@media (max-width: 675px) {
+    .work-gallery a{
+        repeat(auto-fit, minmax(50px, 1fr));
+        max-width: 30%;
+    }
+
+}
+
 .loaded .work-gallery img{
     opacity: 1;
 }
@@ -51,12 +61,12 @@ body{
     <div class="work-content">
         <h1>Our Work</h1>
         <div class="work-gallery">
-            <a href="{% url 'web1' %}"><img data-src="{% static 'first_app/img/gravity.jpg' %}" src="{% static 'first_app/img/gravity.jpg' %}"></a>
-            <a href="{% url 'web2' %}"><img data-src="{% static 'first_app/img/bg_squares.jpg' %}" src="{% static 'first_app/img/bs_squares.jpg' %}"></a>
-            <a href="{% url 'web3' %}"><img data-src="{% static 'first_app/img/minimal.jpg' %}" src="{% static 'first_app/img/minimal.jpg' %}"></a>
-            <a href="{% url 'web4' %}"><img data-src="{% static 'first_app/img/photoshoot.jpg' %}" src="{% static 'first_app/img/photoshoot.jpg' %}"></a>
+            <a href="{% url 'subweb' website='web1' %}"><img data-src="{% static 'first_app/img/gravity.jpg' %}" src="{% static 'first_app/img/gravity.jpg' %}"></a>
+            <a href="{% url 'subweb' website='web2' %}"><img data-src="{% static 'first_app/img/bg_squares.jpg' %}" src="{% static 'first_app/img/bs_squares.jpg' %}"></a>
+            <a href="{% url 'subweb' website='web3' %}"><img data-src="{% static 'first_app/img/minimal.jpg' %}" src="{% static 'first_app/img/minimal.jpg' %}"></a>
+            <a href="{% url 'subweb' website='web4' %}"><img data-src="{% static 'first_app/img/photoshoot.jpg' %}" src="{% static 'first_app/img/photoshoot.jpg' %}"></a>
         </div>
-    </div>  nbv
+    </div>
 </section>
 
 <script>
