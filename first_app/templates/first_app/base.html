@@ -89,17 +89,6 @@ body.loaded {
 }
 
 
-.nav-menu-btn {
-    position: absolute;
-    left: 28px;
-    width: 28px;
-    height: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-}
-
 .nav-menu-btn span {
     height: 2px;
     width: 100%;
@@ -117,30 +106,6 @@ body.loaded {
 }
 
 
-.nav-expand {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    backdrop-filter: blur(24px);
-    z-index: 900;
-
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.6s cubic-bezier(.77,0,.18,1);
-}
-
-.nav-expand.open {
-    transform: scaleY(1);
-}
-
-.nav-expand-inner {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-}
 
 .nav-expand-inner a {
     font-weight: 500;
@@ -154,55 +119,135 @@ body.loaded {
     opacity: 1;
     transform: translateY(-2px);
 }
+.nav-pill {
+    justify-content: space-between;
+}
 
-.links-burger{
-    font-family: "Inter", sans-serif !important;
-    font-weight: 700;
-    font-size: clamp(3rem, 6vw, 6rem);
-    backface-visibility: hidden;
-    letter-spacing: 1px;
+.nav-links {
+    display: flex;
+    gap: 36px;
+    margin-right: 24px;
+    font-family: "Inter", sans-serif;
+}
+
+.nav-item {
+    color: white;
+    font-weight: 500;
+    opacity: 0.75;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.nav-item:hover {
     opacity: 1;
+}
 
+
+.nav-menu {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.85rem;
+  font-family: "Inter", sans-serif;
+}
+
+.nav-menu-item {
+  position: relative;
+  padding: 6px 4px;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav-menu-item:hover {
+  color: white;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  background: rgba(20, 20, 20, 0.65);
+  backdrop-filter: blur(16px);
+  border-radius: 8px;
+  padding: 12px 0;
+  display: none;
+  min-width: 180px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  z-index: 950;
+}
+
+.nav-menu-item:hover .nav-dropdown {
+  display: block;
+}
+
+.dropdown-link {
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
 }
 
 
 </style>
 <body>
+<div class="nav-wrap">
+  <nav class="nav-pill">
+    <a class="nav-a" href="{% url 'home' %}">
+      <h1 class="nav-center">BELLATRIX</h1>
+    </a>
 
-  <div class="nav-wrap">
-    <nav class="nav-pill">
-    <div class="nav-menu-btn" id="menuBtn">
-    <span></span>
-    <span></span>
-    </div>
-        <a class="nav-a" href="{% url 'home' %}"><h1 class="nav-center">BELLATRIX</h1></a>
-
-        </nav>
-    </div>
-
-  <div class="nav-expand" id="navExpand">
-  <div class="nav-expand-inner">
-    <a class="links-burger" href="{% url 'work' %}">Work</a>
-    <a class="links-burger" href="{% url 'studio' %}">Studio</a>
-    <a class="links-burger" href="{% url 'about' %}">About</a>
-    <a class="links-burger" href="{% url 'contact' %}">Contact</a>
-  </div>
+    <ul class="nav-menu">
+      <li class="nav-menu-item" data-menu="work">
+        Work
+        <ul class="nav-dropdown" id="dropdown-work">
+          <li class="dropdown-link">Work Option 1</li>
+          <li class="dropdown-link">Work Option 2</li>
+          <li class="dropdown-link">Work Option 3</li>
+        </ul>
+      </li>
+      <li class="nav-menu-item" data-menu="studio">
+        Studio
+        <ul class="nav-dropdown" id="dropdown-studio">
+          <li class="dropdown-link">Studio Option 1</li>
+          <li class="dropdown-link">Studio Option 2</li>
+          <li class="dropdown-link">Studio Option 3</li>
+        </ul>
+      </li>
+      <li class="nav-menu-item" data-menu="about">
+        About
+        <ul class="nav-dropdown" id="dropdown-about">
+          <li class="dropdown-link">About Option 1</li>
+          <li class="dropdown-link">About Option 2</li>
+          <li class="dropdown-link">About Option 3</li>
+        </ul>
+      </li>
+      <li class="nav-menu-item" data-menu="contact">
+        Contact
+        <ul class="nav-dropdown" id="dropdown-contact">
+          <li class="dropdown-link">Contact Option 1</li>
+          <li class="dropdown-link">Contact Option 2</li>
+          <li class="dropdown-link">Contact Option 3</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 </div>
+
 
 {% block content %}
 
 {% endblock content %}
 </body>
 <!--for_base-->
-<script>
-const menuBtn = document.getElementById("menuBtn");
-const navExpand = document.getElementById("navExpand");
-
-menuBtn.addEventListener("click", () => {
-    menuBtn.classList.toggle("active");
-    navExpand.classList.toggle("open");
-});
-</script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
@@ -244,5 +289,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+
+
+
+<script>
+const items = document.querySelectorAll(".nav-item");
+const panel = document.getElementById("navHoverPanel");
+const grid = document.getElementById("panelGrid");
+
+const data = {
+  work: [
+    ["All Projects", "{% url 'work' %}"],
+    ["Case Studies", "{% url 'work' %}"],
+    ["Photography", "{% url 'work' %}"],
+    ["Experiments", "{% url 'work' %}"]
+  ],
+  studio: [
+    ["Process", "{% url 'studio' %}"],
+    ["Capabilities", "{% url 'studio' %}"],
+    ["Tools & Stack", "{% url 'studio' %}"],
+    ["Culture", "{% url 'studio' %}"]
+  ],
+  about: [
+    ["Our Story", "{% url 'about' %}"],
+    ["Values", "{% url 'about' %}"],
+    ["Timeline", "{% url 'about' %}"]
+  ],
+  contact: [
+    ["Start a Project", "{% url 'contact' %}"],
+    ["Email Us", "{% url 'contact' %}"],
+    ["Social Links", "{% url 'contact' %}"]
+  ]
+};
+
+items.forEach(item => {
+  item.addEventListener("mouseenter", () => {
+    const key = item.dataset.panel;
+    grid.innerHTML = data[key]
+      .map(([text, link]) => `<a href="${link}">${text}</a>`)
+      .join("");
+    panel.classList.add("show");
+  });
+});
+
+panel.addEventListener("mouseleave", () => {
+  panel.classList.remove("show");
+});
+</script>
+
 
 </html>
