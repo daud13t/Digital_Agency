@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" style="border-radius: 30px; background: transparent;" href="{% static 'first_app/img/Favicon-dark.png' %}">
+    <link rel="icon" href="{% static 'first_app/img/Favicon.ico' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -44,28 +44,25 @@ body.loaded {
 
 .nav-wrap {
     position: fixed;
-    top: 32px;
+    top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    height: 70px;
+    height: 100px;
     display: flex;
     justify-content: center;
     pointer-events: none;
 }
 .nav-pill {
     position: absolute;
-    width: 95%;
-    max-width: 1200px;
-    background: rgba(20, 20, 20, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 45px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 100%;
+    background: rgba(104, 104, 104, 0.04);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
     transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
     overflow: hidden;
-    height: 70px;
+    height: 100px;
     z-index: 1001;
     pointer-events: auto;
     will-change: height;
@@ -76,7 +73,7 @@ body.loaded {
     align-items: center;
     justify-content: center;
     padding: 0 15px;
-    height: 70px;
+    height: 100px;
     width: 100%;
     box-sizing: border-box;
     position: relative;
@@ -105,7 +102,7 @@ body.loaded {
 }
 
 .nav-link {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     cursor: pointer;
@@ -115,7 +112,7 @@ body.loaded {
 }
 
 .nav-link-standard{
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     cursor: pointer;
@@ -158,10 +155,10 @@ body.loaded {
 
 .mega-section {
     display: none;
-    padding: 20px 32px 40px 32px;
+    padding: 80px 32px 80px 32px;
+    min-height: 430px;
     width: 100%;
     box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .mega-section.active {
@@ -241,8 +238,8 @@ body.loaded {
 
 body.menu-active .blur-overlay {
     visibility: visible;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
 .page-content-wrapper {
@@ -284,7 +281,7 @@ body.menu-active .blur-overlay {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 798px) {
+@media (max-width: 812px) {
 
     .nav-menu{
         display: none;
@@ -339,15 +336,36 @@ body.menu-active .blur-overlay {
 }
 
 
-@media (min-width: 798px) {
+@media (min-width: 812px) {
     .mobile-drawer {
         display: none;
     }
 }
 
+@media (max-width: 812px) {
+    .nav-pill.mobile-open {
+        height: auto !important;
+        overflow: visible;
+        transition: none !important;
+    }
+}
 
-
-
+.mega-content-wrapper {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    background: rgba(41, 41, 41, 0.08);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 7px;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease 0.1s;
+    pointer-events: none;
+    z-index: 1000;
+}
 
 
 </style>
@@ -358,10 +376,9 @@ body.menu-active .blur-overlay {
 <div class="nav-wrap">
     <nav class="nav-pill" id="navbar">
         <div class="nav-header">
-<a href="{% url 'home' %}" class="nav-logo">
-    <img src="{% static 'first_app/img/Favicon-light.png' %}" alt="">
-    <span>Bellatrix</span>
-</a>
+    <a href="{% url 'home' %}" class="nav-logo">
+    <img src="{% static 'first_app/img/white.png' %}" alt="">
+    </a>
 
             <div class="hamburger" id="hamburger">
             <span></span>
@@ -483,13 +500,12 @@ window.addEventListener("resize", () => {
     const navWrap = document.querySelector('.nav-wrap');
     let timeout;
 
-    function resetNav() {
-        navbar.style.height = '70px';
-        navbar.classList.remove('active');
-        document.body.classList.remove('menu-active');
-        sections.forEach(s => s.classList.remove('active'));
-    }
-
+function resetNav() {
+    navbar.style.height = '100px';
+    navbar.classList.remove('active');
+    document.body.classList.remove('menu-active');
+    sections.forEach(s => s.classList.remove('active'));
+}
     navLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
             clearTimeout(timeout);
@@ -516,6 +532,9 @@ window.addEventListener("resize", () => {
         clearTimeout(timeout);
     });
 </script>
+
+
+
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
