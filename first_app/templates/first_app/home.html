@@ -261,7 +261,44 @@ html, body {
     transform: scale(1.03);
     filter: brightness(1);
 }
+.img-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
 
+.overlay {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #101010;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: bottom 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    font-family: 'Inter', sans-serif;
+}
+
+.img-container:hover .overlay {
+    bottom: 0;
+}
+
+.overlay h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.overlay p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+}
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
@@ -663,27 +700,62 @@ html, body {
     </div>
 
     <div class="work-slider">
+  <div class="slider-track">
 
-        <div class="slider-track">
-
-            <div class="slide">
-                <img src="{% static 'first_app/img/1-01.png' %}" alt="">
-                <img src="{% static 'first_app/img/1-02.png' %}" alt="">
-            </div>
-
-            <div class="slide">
-                <img src="{% static 'first_app/img/1-03.png' %}" alt="">
-                <img src="{% static 'first_app/img/1-04.png' %}" alt="">
-            </div>
-
-            <div class="slide">
-                <img src="{% static 'first_app/img/1-05.png' %}" alt="">
-            </div>
+    <div class="slide">
+      <div class="img-container">
+        <img src="{% static 'first_app/img/1-01.png' %}" alt="">
+        <div class="overlay">
+          <h3>Project Name</h3>
+          <p>Some short description of the project goes here.</p>
         </div>
+      </div>
+
+      <div class="img-container">
+        <img src="{% static 'first_app/img/1-02.png' %}" alt="">
+        <div class="overlay">
+          <h3>Project Name</h3>
+          <p>Some short description of the project goes here.</p>
+        </div>
+      </div>
     </div>
 
+    <div class="slide">
+      <div class="img-container">
+        <img src="{% static 'first_app/img/1-03.png' %}" alt="">
+        <div class="overlay">
+          <h3>Project Name</h3>
+          <p>Some short description of the project goes here.</p>
+        </div>
+      </div>
+
+      <div class="img-container">
+        <img src="{% static 'first_app/img/1-04.png' %}" alt="">
+        <div class="overlay">
+          <h3>Project Name</h3>
+          <p>Some short description of the project goes here.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="img-container">
+        <img src="{% static 'first_app/img/1-05.png' %}" alt="">
+        <div class="overlay">
+          <h3>Project Name</h3>
+          <p>Some short description of the project goes here.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
     <div class="bottom-button">
-        <a class="bottom-text">View all projects</a>
+        <a href="{% url 'work' %}" class="bottom-text">View all projects</a>
     </div>
 </section>
 
@@ -851,18 +923,32 @@ btn.addEventListener("click", toggleVideo);
 
 </script>
 
-
-
-<script>
+    <script>
 const track = document.querySelector('.slider-track');
 const slides = document.querySelectorAll('.slide');
 
 let index = 0;
+let interval;
 
-setInterval(() => {
-    index = (index + 1) % slides.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
-}, 4000);
+function startSlider() {
+    interval = setInterval(() => {
+        index = (index + 1) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+    }, 4000);
+}
+
+function stopSlider() {
+    clearInterval(interval);
+}
+
+// start slider initially
+startSlider();
+
+// pause slider on hover
+slides.forEach(slide => {
+    slide.addEventListener('mouseenter', stopSlider);
+    slide.addEventListener('mouseleave', startSlider);
+});
 </script>
 
 {% endblock content %}
