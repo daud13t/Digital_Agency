@@ -15,8 +15,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <style>
+    @font-face {
+    font-family: 'Rinter';
+    src: url("{% static 'first_app/fonts/Rinter.woff2' %}") format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 body{
-    font-family: sans-serif;
+    font-family: 'Rinter',sans-serif;
     opacity: 0;
     transition: opacity 0.8s ease-in-out;
     background-color: #050505;
