@@ -491,7 +491,6 @@ body {
     line-height: 1.2rem;
 }
 
-
 /* ### FOOTER ### */
 .footer {
     display: flex;
@@ -797,8 +796,279 @@ body {
         <a href="{% url 'work' %}" class="bottom-text">View all projects</a>
     </div>
 </section>
+<style>
+
+.bel-process-section {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    padding: 100px 0;
+    overflow: hidden;
+    font-family: "Rinter", sans-serif;
+}
+
+.bel-process-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.bel-process-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2) brightness(0.5);
+}
 
 
+.bel-process-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 80px;
+}
+
+
+.bel-process-left {
+    position: relative;
+}
+
+.bel-sticky-wrapper {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 150px;
+}
+
+.bel-process-left h1 {
+    font-family: "Rinter", sans-serif;
+    font-size: 4rem;
+    margin: 0 0 20px 0;
+    line-height: 1;
+}
+
+.bel-process-left p {
+    font-family: "Rinter", sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 380px;
+    margin: 0;
+}
+
+.bel-process-right {
+    position: relative;
+    padding-left: 40px;
+}
+
+
+.bel-timeline-track {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 50px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.bel-timeline-fill {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 1px;
+    height: 0%;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: height 0.1s linear;
+}
+
+/* STEPS */
+.bel-process-step {
+    margin-bottom: 120px;
+    position: relative;
+    opacity: 0.3;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.bel-process-step.active {
+    opacity: 1;
+    transform: translateX(10px);
+}
+
+.bel-process-step:last-child {
+    margin-bottom: 0;
+}
+
+.bel-step-num {
+    font-family: "Rinter", sans-serif;
+    font-size: 0.9rem;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    background: #000;
+    position: relative;
+    z-index: 2;
+}
+
+.bel-process-step::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 15px;
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    transition: background 0.3s;
+}
+
+.bel-process-step.active::before {
+    background: rgba(255,255,255,1);
+}
+
+.bel-process-step h3 {
+    font-family: "Rinter", sans-serif;
+    font-size: 2rem;
+    margin: 0 0 10px 0;
+    color: #fff;
+}
+
+.bel-process-step p {
+    font-family: "Rinter", sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 450px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 900px) {
+    .bel-process-inner {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .bel-sticky-wrapper {
+        position: relative;
+        top: auto;
+    }
+
+    .bel-process-step {
+        margin-bottom: 80px;
+    }
+}
+</style>
+
+<section class="bel-process-section" id="process-trigger">
+    <div class="bel-process-bg">
+
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Digital Earth Background">
+    </div>
+
+    <div class="bel-process-inner">
+
+        <div class="bel-process-left">
+            <div class="bel-sticky-wrapper">
+                <h1>Our Process</h1>
+                <p>
+                    A framework designed to transform ambiguity into clarity.
+                    We move from insight to execution with a precision that
+                    ensures your brand doesn't just launch, but orbits.
+                </p>
+            </div>
+        </div>
+
+        <div class="bel-process-right">
+            <div class="bel-timeline-track"></div>
+            <div class="bel-timeline-fill" id="timeline-fill"></div>
+
+            <div class="bel-process-step">
+                <div class="bel-step-num">01</div>
+                <h3>Discovery</h3>
+                <p>We immerse ourselves in your universe. Understanding constraints, users, and the gravity of your goals before writing a single line of code.</p>
+            </div>
+
+            <div class="bel-process-step">
+                <div class="bel-step-num">02</div>
+                <h3>Strategy</h3>
+                <p>Defining the trajectory. We map out the user journey and technical architecture to ensure scalable, long-term growth.</p>
+            </div>
+
+            <div class="bel-process-step">
+                <div class="bel-step-num">03</div>
+                <h3>Design</h3>
+                <p>Visualizing the constellation. We craft interfaces that are intuitive, beautiful, and strictly intentional.</p>
+            </div>
+
+            <div class="bel-process-step">
+                <div class="bel-step-num">04</div>
+                <h3>Development</h3>
+                <p>Engineering the core. Clean, efficient code that powers your digital presence with reliability and speed.</p>
+            </div>
+
+            <div class="bel-process-step">
+                <div class="bel-step-num">05</div>
+                <h3>Launch</h3>
+                <p>Ignition. We deploy, test, and refine, ensuring a seamless entry into the market.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector('.bel-process-section');
+    const fillLine = document.getElementById('timeline-fill');
+    const steps = document.querySelectorAll('.bel-process-step');
+
+    function handleScroll() {
+        if (!section || !fillLine) return;
+
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+
+        const startOffset = windowHeight * 0.4;
+        const endOffset = windowHeight * 0.4;
+
+        const totalHeight = rect.height - startOffset - endOffset;
+        let progress = (windowHeight - rect.top - startOffset) / totalHeight;
+
+        progress = Math.max(0, Math.min(1, progress));
+
+        fillLine.style.height = `${progress * 100}%`;
+
+        const triggerPoint = windowHeight * 0.6;
+
+        steps.forEach(step => {
+            const stepRect = step.getBoundingClientRect();
+            if (stepRect.top < triggerPoint && stepRect.bottom > 0) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+});
+</script>
 
 
 <section class="footer">
