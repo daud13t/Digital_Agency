@@ -88,32 +88,6 @@ body {
     padding-top: 15px;
 }
 
-.bottom-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(83, 83, 83, 0.6);
-    padding-top: 50px;
-}
-
-.bottom-text {
-    font-family: 'Funnel Sans', sans-serif;
-    font-size: 0.95rem;
-    color: white;
-    text-decoration: none;
-    border: 3px solid white;
-    padding: 15px 20px 15px 20px;
-    border-radius: 27px;
-    display: inline-block;
-    transition: transform 0.35s cubic-bezier(.4,0,.2,1);
-    will-change: transform;
-}
-
-.bottom-button:hover .bottom-text {
-    transform: scale(1.1);
-}
-
-
 /* ########## HERO ### */
 .hero {
     position: relative;
@@ -303,7 +277,7 @@ body {
     width: 100%;
     max-width: 620px;
     padding: 50px 5px 30px 5px;
-    min-height: 200px;
+    min-height: 250px;
     cursor: pointer;
     border-top: 1px solid rgba(255,255,255,0.35);
     background-color: transparent;
@@ -401,6 +375,32 @@ body {
     font-size: 1rem;
     opacity: 0.85;
 }
+
+.bottom-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(83, 83, 83, 0.6);
+    padding-top: 50px;
+}
+
+.bottom-text {
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    padding: 16px 42px;
+    border: 1px solid rgba(255,255,255,0.6);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.bottom-button:hover .bottom-text {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+}
+
 
 
 .work-slider {
@@ -632,6 +632,94 @@ body {
 }
 
 
+
+
+/* =========================
+   CTA MARQUEE SECTION
+   ========================= */
+
+.cta-marquee {
+    background: #1e1e1e;
+    padding: 150px 0 100px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 18s linear infinite;
+}
+
+.marquee-track span {
+    font-family: 'Rinter', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+    padding:50px 80px 0 0;
+    line-height: 1;
+}
+
+/* animation */
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.cta-bottom {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.cta-btn {
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    padding: 16px 42px;
+    border: 1px solid rgba(255,255,255,0.6);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.cta-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/*=== ===
+   MOBILE TUNING
+   ================ */
+
+@media (max-width: 768px) {
+    .cta-marquee {
+        padding: 90px 0 80px;
+    }
+
+    .marquee-track span {
+        padding-right: 50px;
+    }
+
+    .cta-bottom {
+        margin-top: 50px;
+    }
+}
+
+
 /* ### FOOTER ### */
 .footer {
     display: flex;
@@ -678,25 +766,20 @@ body {
     color: #fbfbfb;
 }
 .contact-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 999px;
-    background: #ffffff;
-    color: #000000;
-    max-width: 120px;
-    font-size: 1.2rem;
-    font-weight: 300;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1rem;
+    padding: 16px 42px;
+    border: 1px solid rgba(255,255,255,0.6);
+    color: #fff;
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    font-family: "Rinter", sans-serif;
+    border-radius: 999px;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
 }
 
 .contact-btn:hover {
     transform: translateY(-4px) scale(1.05);
     background: #72639e;
+    color:white;
 }
 
 .footer-center-links {
@@ -956,7 +1039,7 @@ body {
 <section class="bel-process-section" id="process-trigger">
     <div class="bel-process-bg">
 
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Digital Earth Background">
+        <!--<img src="{% static 'earth.png' %}" alt="Digital Earth Background">-->
     </div>
 
     <div class="bel-process-inner">
@@ -1010,11 +1093,19 @@ body {
     </div>
 </section>
 
-<section class="reach-us">
+<section class="cta-marquee">
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>LET’S CREATE TOGETHER</span>
+            <span>LET’S DO THE IMPOSSIBLE TOGETHER</span>
+            <span>LET’S WORK TOGETHER</span>
+            <span>LET’S COLLABORATE TOGETHER</span>
+        </div>
+    </div>
 
-
-
-
+    <div class="cta-bottom">
+        <a href="{% url 'contact' %}" class="cta-btn">Start a Project</a>
+    </div>
 </section>
 
 <section class="footer">
