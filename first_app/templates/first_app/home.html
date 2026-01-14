@@ -302,13 +302,12 @@ body {
 .widget {
     width: 100%;
     max-width: 620px;
-    padding: 25px 5px 30px 5px;
+    padding: 50px 5px 30px 5px;
+    min-height: 200px;
     cursor: pointer;
     border-top: 1px solid rgba(255,255,255,0.35);
     background-color: transparent;
-    min-height: 120px;
-    transition: background-color 0.25s ease, border-color 0.25s ease;
-    box-sizing: border-box;
+    transition: background-color 0.3s ease-in-out, border-color 0.4s ease-in-out !important;    box-sizing: border-box;
     position: relative;
     margin: 0 !important;
 }
@@ -791,6 +790,24 @@ body {
         border-radius: 16px;
     }
 }
+
+
+/* ================= SCROLL REVEAL ANIMATION ================= */
+
+.reveal-element {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-element.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-element:nth-child(2) { transition-delay: 0.1s; }
+.reveal-element:nth-child(3) { transition-delay: 0.2s; }
 </style>
 
 <div id="loader">
@@ -1181,5 +1198,41 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const targets = document.querySelectorAll(
+        'section:not(.hero) h1, ' +
+        'section:not(.hero) p, ' +
+        'section:not(.hero) h6, ' +
+        '.widget, ' +
+        '.trust-video, ' +
+        '.slide, ' +
+        '.bottom-button'
+    );
+
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    targets.forEach(target => {
+        if (!target.closest('.bel-process-step')) {
+            target.classList.add('reveal-element');
+            scrollObserver.observe(target);
+        }
+    });
+});
+</script>
 
 {% endblock content %}
