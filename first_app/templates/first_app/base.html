@@ -276,7 +276,7 @@ body.menu-active .blur-overlay {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 812px) {
+@media (max-width: 980px) {
 
     .nav-menu{
         display: none;
@@ -332,13 +332,13 @@ body.menu-active .blur-overlay {
 }
 
 
-@media (min-width: 812px) {
+@media (min-width: 980px) {
     .mobile-drawer {
         display: none;
     }
 }
 
-@media (max-width: 812px) {
+@media (max-width: 980px) {
     .nav-pill.mobile-open {
         height: auto !important;
         overflow: visible;
@@ -389,9 +389,11 @@ body.menu-active .blur-overlay {
 
 .work-mega-container {
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 0 40px;
+    padding: 0 64px;
 }
 
 .mega-title {
@@ -412,7 +414,7 @@ body.menu-active .blur-overlay {
 
 .work-card {
     display: flex;
-    height: 100px;
+    height: 180px;
     background: #f4f4f4;
     border-radius: 8px;
     overflow: hidden;
@@ -425,14 +427,14 @@ body.menu-active .blur-overlay {
 }
 
 .work-card img {
-    width: 100px;
+    width: 200px;
     height: 100%;
     object-fit: cover;
 }
 
 .work-card-info {
     flex: 1;
-    padding: 15px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -519,6 +521,13 @@ body.menu-active .blur-overlay {
                     <p>Modern Retail Experience</p>
                 </div>
             </a>
+            <a href="{% url 'work' %}" class="work-card">
+                <img src="{% static 'first_app/img/1-03.png' %}" alt="Project 3">
+                <div class="work-card-info">
+                    <h4>Branding</h4>
+                    <p>From bottom to top</p>
+                </div>
+            </a>
         </div>
         <a href="{% url 'work' %}" class="see-work-btn">See Work ↗</a>
     </div>
@@ -532,13 +541,6 @@ body.menu-active .blur-overlay {
                         <li><a href="#">Leadership</a></li>
                         <li><a href="#">Designers</a></li>
                         <li><a href="#">Developers</a></li>
-                    </ul>
-                </div>
-                <div class="mega-col">
-                    <h3>Culture</h3>
-                    <ul>
-                        <li><a href="#">Philosophy</a></li>
-                        <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
             </div>
