@@ -186,9 +186,8 @@ body {
     font-size: 3rem;
 }
 .trust-heading p {
-    font-size: 1.1rem;
-    font-weight: 300;
-    font-family: sans-serif;
+    font-size: 1rem;
+    font-family: 'Rinter',sans-serif;
 }
 
 .trust-video {
@@ -293,7 +292,7 @@ body {
     margin-top: 0 !important;
 }
 
-.service-left h6 {
+.service-left p {
     line-height: 1.7;
     font-size: 1rem;
     opacity: 0.85;
@@ -303,7 +302,7 @@ body {
 .widget {
     width: 100%;
     max-width: 620px;
-    padding: 25px 0 30px 0;
+    padding: 25px 5px 30px 5px;
     cursor: pointer;
     border-top: 1px solid rgba(255,255,255,0.35);
     background-color: transparent;
@@ -311,6 +310,7 @@ body {
     transition: background-color 0.25s ease, border-color 0.25s ease;
     box-sizing: border-box;
     position: relative;
+    margin: 0 !important;
 }
 
 .widget:not(:last-child) {
@@ -392,7 +392,7 @@ body {
 .heading-detail h1{
     padding-left: 50px;
     font-weight: 450;
-    margin: 0;
+    margin-bottom: 53px;
     font-size: 3.6rem;
 }
 .heading-detail h6{
@@ -490,6 +490,153 @@ body {
     font-size: 0.9rem;
     line-height: 1.2rem;
 }
+
+/*##########Our process*/
+
+.bel-process-section {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    padding-bottom: 120px;
+    overflow: hidden;
+    font-family: "Rinter", sans-serif;
+}
+
+.bel-process-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.35;
+}
+
+.bel-process-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.4) contrast(1.1);
+}
+
+.bel-process-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    gap: 60px;
+    padding: 50px;
+    align-items: start;
+}
+
+.bel-process-left {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    height: fit-content;
+}
+
+.bel-process-left h1 {
+    font-family: "Rinter", sans-serif;
+    font-size: 4rem;
+    margin: 0 0 53px 0;
+    line-height: 1;
+
+}
+
+.bel-process-left p {
+    font-family: "Rinter", sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 650px;
+    margin: 0;
+}
+
+.bel-process-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.bel-timeline-track {
+    position: absolute;
+    right: 640px;
+    top: 10px;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.bel-timeline-fill {
+    position: absolute;
+    right: 640px;
+    top: 10px;
+    width: 1px;
+    height: 0%;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: height 0.1s linear;
+}
+
+.bel-process-step {
+    width: 100%;
+    max-width: 620px;
+    margin-bottom: 120px;
+    position: relative;
+    opacity: 0.25;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.bel-process-step.active {
+    opacity: 1;
+}
+
+.bel-step-num {
+    font-size: 0.85rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    background: #000;
+}
+
+.bel-process-step h3 {
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+}
+
+.bel-process-step p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+}
+
+@media (max-width: 1200px) {
+    .bel-timeline-track, .bel-timeline-fill {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .bel-process-inner {
+        grid-template-columns: 1fr;
+        padding: 50px 20px;
+    }
+    .bel-process-left {
+        position: relative;
+        top: auto;
+        margin-bottom: 40px;
+    }
+    .bel-process-right {
+        align-items: flex-start;
+    }
+}
+
 
 /* ### FOOTER ### */
 .footer {
@@ -612,10 +759,10 @@ body {
         padding: 70px 20px;
     }
     .widget p {
-        padding-right: 0; /* Remove padding on mobile */
+        padding-right: 0;
     }
     .widget-hover-img {
-        display: none; /* Hide hover effect on mobile */
+        display: none;
     }
 }
 
@@ -688,12 +835,12 @@ body {
     <div class="service-content">
         <div class="service-left">
             <h1>Our expertise</h1>
-            <h6>
+            <p>
                 Every organization moves differently. That’s why we develop solutions built on insight, expertise,
                 and a sharp understanding of your brand. Our strategic, creative, and technological
                 disciplines strengthen one another giving you an approach that aligns precisely with
                 the growth you want to achieve.
-            </h6>
+            </p>
         </div>
 
         <div class="service-right">
@@ -796,152 +943,6 @@ body {
         <a href="{% url 'work' %}" class="bottom-text">View all projects</a>
     </div>
 </section>
-<style>
-
-.bel-process-section {
-    position: relative;
-    background-color: #000;
-    color: #fff;
-    padding-bottom: 120px;
-    overflow: hidden;
-    font-family: "Rinter", sans-serif;
-}
-
-.bel-process-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.35;
-}
-
-.bel-process-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%) brightness(0.4) contrast(1.1);
-}
-
-.bel-process-inner {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 40% 1fr;
-    gap: 60px;
-    padding: 50px;
-    align-items: start;
-}
-
-.bel-process-left {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 120px;
-    align-self: start;
-    height: fit-content;
-}
-
-.bel-process-left h1 {
-    font-family: "Rinter", sans-serif;
-    font-size: 4rem;
-    margin: 0 0 14px 0;
-    line-height: 1;
-}
-
-.bel-process-left p {
-    font-family: "Rinter", sans-serif;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 650px;
-    margin: 0;
-}
-
-.bel-process-right {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.bel-timeline-track {
-    position: absolute;
-    right: 640px;
-    top: 10px;
-    bottom: 0;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.bel-timeline-fill {
-    position: absolute;
-    right: 640px;
-    top: 10px;
-    width: 1px;
-    height: 0%;
-    background: #ffffff;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    transition: height 0.1s linear;
-}
-
-.bel-process-step {
-    width: 100%;
-    max-width: 620px;
-    margin-bottom: 120px;
-    position: relative;
-    opacity: 0.25;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.bel-process-step.active {
-    opacity: 1;
-}
-
-.bel-step-num {
-    font-size: 0.85rem;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-    background: #000;
-}
-
-.bel-process-step h3 {
-    font-size: 1.8rem;
-    margin: 0 0 10px 0;
-}
-
-.bel-process-step p {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
-}
-
-@media (max-width: 1200px) {
-    .bel-timeline-track, .bel-timeline-fill {
-        display: none;
-    }
-}
-
-@media (max-width: 900px) {
-    .bel-process-inner {
-        grid-template-columns: 1fr;
-        padding: 50px 20px;
-    }
-    .bel-process-left {
-        position: relative;
-        top: auto;
-        margin-bottom: 40px;
-    }
-    .bel-process-right {
-        align-items: flex-start;
-    }
-}
-
-</style>
 
 <section class="bel-process-section" id="process-trigger">
     <div class="bel-process-bg">
@@ -1000,46 +1001,12 @@ body {
     </div>
 </section>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const section = document.querySelector('.bel-process-section');
-    const fillLine = document.getElementById('timeline-fill');
-    const steps = document.querySelectorAll('.bel-process-step');
-
-    function handleScroll() {
-        if (!section || !fillLine) return;
-
-        const rect = section.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
+<section class="reach-us">
 
 
-        const startOffset = windowHeight * 0.4;
-        const endOffset = windowHeight * 0.4;
 
-        const totalHeight = rect.height - startOffset - endOffset;
-        let progress = (windowHeight - rect.top - startOffset) / totalHeight;
 
-        progress = Math.max(0, Math.min(1, progress));
-
-        fillLine.style.height = `${progress * 100}%`;
-
-        const triggerPoint = windowHeight * 0.6;
-
-        steps.forEach(step => {
-            const stepRect = step.getBoundingClientRect();
-            if (stepRect.top < triggerPoint && stepRect.bottom > 0) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-});
-</script>
-
+</section>
 
 <section class="footer">
     <div class="socials">
@@ -1064,7 +1031,8 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 </section>
 
-<script>window.addEventListener('load', () => {
+<script>
+    window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     const fill = document.getElementById('progress-fill');
     const text = document.getElementById('percent');
@@ -1171,5 +1139,47 @@ slides.forEach(slide => {
     slide.addEventListener('mouseleave', startSlider);
 });
 </script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const section = document.querySelector('.bel-process-section');
+    const fillLine = document.getElementById('timeline-fill');
+    const steps = document.querySelectorAll('.bel-process-step');
+
+    function handleScroll() {
+        if (!section || !fillLine) return;
+
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+
+        const startOffset = windowHeight * 0.4;
+        const endOffset = windowHeight * 0.4;
+
+        const totalHeight = rect.height - startOffset - endOffset;
+        let progress = (windowHeight - rect.top - startOffset) / totalHeight;
+
+        progress = Math.max(0, Math.min(1, progress));
+
+        fillLine.style.height = `${progress * 100}%`;
+
+        const triggerPoint = windowHeight * 0.6;
+
+        steps.forEach(step => {
+            const stepRect = step.getBoundingClientRect();
+            if (stepRect.top < triggerPoint && stepRect.bottom > 0) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+});
+</script>
+
 
 {% endblock content %}
